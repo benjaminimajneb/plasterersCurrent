@@ -1,0 +1,564 @@
+<html>
+	<head>
+		<title>Fem.Ale Festival 2015</title>
+		<script src="../js/jquery-1.10.2.min.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Playfair+Display:400,400italic' rel='stylesheet' type='text/css'>
+		<style>
+			*{
+				padding:0;
+				border:0;
+				margin:0;
+			}	
+			body{
+				background-color:#4F4F4A;
+				font-family:oswald;
+				font-size:0px;
+			}
+			
+			div{
+				vertical-align:top;
+			}
+			
+			#header{
+				height:70px;
+				position:fixed;
+				width:100%;
+				z-index:100;
+				color:red;
+				background-color:#F7FDF5;
+				top:0px;
+				left:0px;
+				right:0px;
+				display:inline-block;
+			}
+			
+			#logo{
+				margin-left:0;
+				z-index:1000;
+				border:0px solid red;
+				width:25%;
+				height:80%;
+				padding-top:auto;
+				display:inline-block;
+				vertical-align:bottom;
+			}
+			
+			#logo img {
+				width:auto;
+			/*	max-height:50%; this doesn't work??*/
+				height:auto;
+				max-height:100%;
+				padding-top:10px;
+				padding-bottom:10px;
+				position:relative;
+				display:block;
+				margin:auto;
+				margin:auto;
+				
+			}
+			
+			#menuOptions{
+				color:#4F4F4A;
+				width:50%;
+				height:100%;
+				float:right;
+				margin-right:0;
+				display:inline-block;
+			}
+			
+			.menuOption{
+				font-family: 'oswald';
+				font-weight:300;
+				display:inline-block;
+				width:25%;
+				font-size:20px;
+				line-height:60px;
+				vertical-align:middle;
+				text-align:center;
+			}
+			
+			a{
+				color:#4F4F4A;
+				text-decoration:none;
+			}
+			
+			img{
+				max-width:100%;
+				max-height:100%
+			}
+		
+			#mainPage{
+				top:80px;
+				display:inline-block;
+				width:100%;	
+				background-color:#4F4F4A;
+
+			}
+			#spacer{
+				max-width:100%;
+				height:70px;
+				background-color:#F7FDF5;
+			}			
+			.box{
+				width:50%;
+				display:inline-block;
+				font-size:20px;
+				background-color:#4F4F4A;
+				position:relative;
+				top:70px;
+			}
+			tr{
+				color:#F7FDF5;
+			}
+			h3 {
+				font-size:17px;
+				font-weight:500;
+				color:#F7FDF5;
+				padding:30px;
+				text-align:center;
+			}
+			p, table{
+				font-size: 15px;
+				font-weight:200;
+				padding:30px;
+				padding-top:0px;
+				padding-bottom:0px;
+				text-align:center;
+				color:#F7FDF5;
+				font-family:'Playfair Display';
+			}
+			
+			td{
+				min-width:60px;
+				padding-top:10px;
+				padding-bottom:10px;
+				font-size:14px;
+			}
+			.box a{
+				color:#BFC6D3;
+			}
+			#ninkasi p{
+				font-size:12.5px;
+				padding:20px;
+				padding-top:0px;
+			}
+						
+			#contactBar{
+				width:100%;
+				background-color:#F7FDF5;
+				padding-top:15px;
+								position:relative;
+				top:70px;
+			}
+			#contactOptions{
+				color:#4F4F4A;
+				width:70%;
+				margin-right:auto;
+				margin-left:auto;
+				background-color:#F7FDF5;
+				text-align:center;
+				display:block;
+			}
+			
+			#plasterers{
+				font-size:16px;
+				color:#4F4F4A;
+				text-align:center;
+				font-weight:200;
+				padding-bottom:20px;
+			}
+			
+			#opening{
+				display:none;
+				z-index:150;
+			}
+			h1{
+				color:#F7FDF5;
+				font-size:50px;
+				text-shadow: 2px 2px 8px #FF0000;
+				text-align:center;
+			}
+			h2{
+				color:#F7FDF5;
+				font-size:20px;
+				text-shadow: 2px 2px 8px #FF0000;
+				text-align:center;
+			}
+
+
+			
+
+		</style>
+	</head>
+	
+	<body>
+		<div id="header">
+			<div id="logo">
+				<img src="img/wordlogo.gif" alt="logo">
+			</div>
+			
+			<div id="menuOptions">
+				<div class="menuOption">
+					<a href="#about"> ABOUT </a>
+				</div>
+				<div class="menuOption">
+					<a href="#events"> EVENTS </a>
+				</div>				
+				<div class="menuOption">
+					<a href="#beers"> BEERS </a>
+				</div>				
+				<div class="menuOption">
+					<a href="#contactBar"> CONTACT </a>
+				</div>
+			</div>
+		</div>
+		
+		<div id="mainPage">
+		
+<!-- // ----------------------- MAIN CONTENT --------------------------------------------------- // -->
+
+		
+			<div id="about">
+				<div class="box">
+					<img src="img/femalebeer.jpg">
+				</div>
+				<div class="box">
+					
+			<h3> BRITAIN'S FIRST BREWSTER BEER FESTIVAL RETURNS TO NORFOLK 22-25 MAY 2015</h3>
+				<p>
+22ND-25TH MAY 2015 at THE PLASTERERS ARMS, NORWICH 
+<br><br>
+After the runaway success of last year's Festival, FEM.ALE returns for its second annual flagship festival - and this time it's going to be even bigger and better!  
+<br><br>
+Women enjoying beer is no new thing - the myths that women don't enjoy beer or that pubs are just a space for men to escape to, find no place in one of the finest cities in the country to find a pint. 
+But while we know beer is loved by men and women alike, FEM.ALE celebrates women who are actually doing the brewing within the industry. 
+As part of the <a href="http://cityofale.org.uk">City of Ale Festival,</a> the Plasterers Arms is once again devoting a weekend to beer brewed by women, and enjoyed by everyone.
+<br><br>
+For the May Day bank holiday weekend, all 15 of the Plasterers' gravity pumps will be dedicated to female brewed ales, featuring two unique beers specially crafted for us by beer technologist Sophie de Ronde and Adnams brewster Belinda Jennings. 
+This year we will again be teaming up with musical hell-raisers <a href="https://www.facebook.com/ponyupponyup"> Pony Up </a> who will be providing live music from local female musicians and DJs. 
+<br><br>
+We'll also be welcoming back award winning beer writer, sommelier and booze historian Jane Peyton for a female beer and female cheese matching evenings Cheeses. 
+There'll be the opportunity to meet Brewsters <a href="http://www.oldnickstavern.co.uk/horncastle-ales/">Lizzie Ellis from Lincolnshire's Horncastle Ales</a> and from London brewery <a href="http://www.hopstuffbrewery.com/"> Hop Stuff</a>, Alix Shaw. 
+<br><br>
+Everyone is welcome at FEM.ALE so we invite you all to come, drink and be merry! 
+
+
+					
+					</p>
+				</div>
+			</div>
+			
+<!-- // ------------------------------------------------------------------------------------------------- // -->
+			
+			<div id="events">
+				<div class="box">					
+					<h3>EVENTS.</h3>
+					<table>
+						<tr>
+							<td>
+					Friday 22nd May 2014
+							</td>							
+							<td>
+					7 PM
+							</td>
+							<td>
+LAUNCH PARTY.  From 17:00. Beer cocktails, fabulous Brewster brews, live music from Abigail Blake and The Living End, plus DJs all night long! 
+							</td>
+						</tr>							
+						<tr>
+							<td>
+Saturday 23rd May
+							</td>							
+							<td>
+2 PM
+							</td>
+							<td>
+
+<a href="https://www.facebook.com/events/1431000493872884/">CHEESE & BEER TASTING.</a> A selection of Mrs Temples Cheeses matched with Brewster beers. Hosted by Jane Peyton. Tickets are &pound9 (adv) and can be purchased <a href="https://theplasterers.yapsody.com/event/index/12228/beer-and-cheese-tasting">here. </a> 
+							</td>
+						</tr>							
+						<tr>
+							<td>
+Saturday 23rd May
+							</td>							
+							<td>
+4 PM
+							</td>
+							<td>
+Stay put with a pint until 4 o'clock for a discussion panel from Lizzie Ellis from Horncastle Ales, Alix Shaw 
+from Hop Stuff Brewery and Jane Peyton too, telling us how they brew their beers, the history of women and 
+beer what it's like being a woman in the beer industry. 
+							</td>
+						</tr>
+						<tr>
+							<td>
+Saturday 23rd May
+							</td>							
+							<td>
+7 PM
+							</td>
+							<td>
+PONY UP DJs. Saturday night we'll be partying again 
+with DJ's, dancing and beers from brewsters across the country.  							
+							</td>
+						</tr>
+
+						<tr>
+							<td>
+Sunday 24th May
+							</td>
+							<td>
+3 PM
+							</td>
+							<td>
+
+JoC'S TASTING. Meet-the-brewster and tasting with Norfolk brewmaster Jo Coubrough.	A great chance to taste some of Jo's award winning beers, in case you hadn't already!						
+							</td>
+						</tr>
+						<tr>
+							<td>
+Sunday 24th May
+							</td>							
+							<td>
+6 PM
+							</td>
+							<td>
+SUNDAY BLUES. Live music from female fronted blues band Mojo Preachers					
+							</td>
+						</tr>
+<!--						<tr>
+							<td>
+Monday 25th May
+							</td>
+							<td>
+1 PM
+							</td>
+							<td>
+THE SCIENCE OF BEER. We'll be hosting The Science of Beer! Join us for talks from female beer experts 
+on how they use their degrees in science to produce their amazing range of beers. 
+<br>
+It's not drinking. It's SCIENCE. 
+							</td>
+						</tr>
+						-->
+						<tr>
+							<td>
+Monday 25th May
+							</td>
+							<td>
+8 PM
+							</td>
+							<td>
+PUB QUIZ. Close the bank holiday weekend with a pub quiz with a 
+FEM.ALE twist, smashing sexist slurs of the past and celebrating great women of history. 
+							</td>
+						</tr>
+					</table>
+		</div>
+				<div class="box">
+					<img src="img/beerfood.jpg">
+				</div>
+			</div>
+			
+<!-- // ------------------------------------------------------------------------------------------------- // -->
+
+<div id="cheese">
+				<div class="box">
+					<img src="img/cheese.jpg">	
+				</div>
+				<div class="box">
+					<h3><br><br>CHEESE & BEER</h3>
+					<p>	
+					<br><br>
+					You like cheese.  You like beer.  What's more to say?
+					<br><br><br>
+					On Saturday lunch time, the wonderful <a href='http://www.jane-peyton.com/'>Jane Peyton</a> and the unstoppable <a href='http://www.norfolkcoastaonb.org.uk/pages/pspage.php?PageID=502'>Mrs Temple</a> are teaming up to present a tasting event pairing different Norfolk cheeses to different brewster brewed beers. 
+					It's going to be interesting, it's going to be delicious, it's going to be a riot.
+					<br><br><br><br>
+					The event starts at 2pm on Saturday 23rd May, and you can buy <a href="https://theplasterers.yapsody.com/event/index/12228/beer-and-cheese-tasting">tickets in advance (reccommended) here. </a>
+					</p>
+				</div>
+			</div>
+
+<!-- // ------------------------------------------------------------------------------------------------- // -->
+			<div id="beers">
+				<div class="box">
+					<h3><br>A BAR FULL OF THE MOST EXCITING BEERS BEING BREWED IN THE UK AT THE MOMENT.</h3>
+					<p>	
+					<br>	
+There are just too many awesome beers we've got for you this year to go into too much detail, so here are a few highlights.
+This year we've got a whole host of new breweries, as well as some old favourites.
+We will of course have some ales from <a href="http://www.jocsnorfolkale.co.uk/">Jo C's brewery </a>- Jo is Norfolk's only brewster and produces a range of some of the finest traditional ales in the county. She will be holding a tasting and meet the brewer event on Sunday 24th May at 6pm.
+						<br><br>
+						
+We also have two different versions of <a href="#unite">Unite Red Ale</a>, brewed on International Women's Collaboration Brew Day by Wild Card and Gyle 59.
+We're also extremely lucky to have TWO unique beers, brewed especially for us - a Sorachi Saison (5.8%) from <a href="http://adnams.co.uk/beer/meet-the-brewer/">Belinda at Adnams</a>, and a <a href='#muntons'>honey & spice pale</a> from Sophie at <a href="http://www.muntons.com/">Muntons</a>.	
+<br><br>
+Here are some other highlights:			<br>
+Beavertown - <a href="http://www.ratebeer.com/beer/beavertown-smog-rocket/173662/">Smog Rocket (5.4%),</a> <a href="http://www.ratebeer.com/beer/beavertown-neck-oil-2013-/230018/">Neck Oil (4.3%),</a> <a href="http://www.ratebeer.com/beer/beavertown-bloody-ell/213354/">Bloody 'Ell (7.2%),</a>
+<br>
+Gyle 59 - <a href="http://www.ratebeer.com/beer/gyle-59-dark-and-bitter/280446/">Dark & Bitter (5.8%),</a> <a href="http://www.ratebeer.com/beer/gyle-59-nettle-ipa/280468/">Nettle IPA (5.3%),</a> <a href="http://www.ratebeer.com/beer/gyle-59-unite-red-ale/321514/"> Unite Red Saison,</a>
+<br>
+Horncastle Ales - <a href="http://www.ratebeer.com/beer/horncastle-angel-of-light/321283/">Angel,</a> <a href="http://www.ratebeer.com/beer/horncastle-liliths-lust/282018/">Lilith's Lust,</a> <a href="http://www.ratebeer.com/beer/horncastle-midnight-tempter/292358/"> Midnight Tempter,</a>
+<br>
+Hop Stuff - <a href="http://www.ratebeer.com/beer/hop-stuff-pale/237193/">Pale Ale (4.5%),</a> <a href="http://www.ratebeer.com/beer/hop-stuff-renegade-ipa/248194/">Renegade (4.6%),</a>
+<br>
+Ilkley - <a href="http://www.ratebeer.com/beer/ilkley-rosa-ostara/330030/">Rosa Ostara (4.6%),</a>
+<br>
+Mallinsons - <a href="http://www.ratebeer.com/beer/mallinsons-hop-zest/329087/">Hop Zest (4.4%),</a> <a href="http://www.ratebeer.com/beer/mallinsons-mosaic/214117/">Mosaic (4.0%),</a>
+<br>
+Wild Card - <a href="">Unite Red Ale (4.6%),</a> <a href="http://www.ratebeer.com/beer/wild-card-queen-of-diamonds/260463/">Queen of Diamonds (5%),</a> <a href="http://www.ratebeer.com/beer/wild-card-jack-of-clubs/207434/">Jack of Clubs (4.5%)</a>	
+					</p>
+				</div>
+				<div class="box">
+					<img src="img/joc.jpg">
+				</div>
+				
+			</div>
+<!-- // ------------------------------------------------------------------------------------------------- // -->
+<div id="muntons">
+				<div class="box">
+					<img src="img/muntonspumpclip.jpg">
+				</div>				
+				<div class="box">
+					<h3><br>
+					Muntons' Honey Spiced Ale
+					</h3>
+
+					<p><br>
+Spiced Honey Pale is a truly unique beer in every way - it's the first publicly available beer from
+
+Muntons, the Stowmarket-based malt supplier.  It was created by Sophie De Ronde, 
+mastermind of <a href='#unite'>International Women's Collaboration Day </a> and ex-head brewer at Brentwood Brewery.
+<br><br>
+The beer has been made using honey, ginger and coriander seeds, Vienna malt as a backdrop with a hint of caramalt, 
+toasted wheat and rye for a rich golden, toasted maltiness.  
+<br><br>
+Sounds delicious, doesn't it?  We can't wait!
+<br><br>
+Muntons are kindly donating their proceeds from this beer to charity.
+					
+					</p>
+				</div>
+			</div>
+
+
+
+
+
+
+<!-- // ------------------------------------------------------------------------------------------------- // -->
+
+			
+			<div id="ninkasi">
+				
+				<div class="box">
+					<h3>
+					Some of the oldest recorded writing in human history is a hymn so the Sumerian Goddess of beer.
+					</h3>
+
+					<p>
+Ninkasi, Borne of the flowing water (...)<br>
+Tenderly cared for by the Ninhursag,<br>
+
+Having founded your town by the sacred lake,<br>
+She finished its great walls for you<br>
+Your father is Enki, Lord Nidimmud,<br>
+Your mother is Ninti, the queen of the sacred lake.<br>
+ <br>
+You are the one who handles the dough, with a big shovel,<br>
+Mixing in a pit, the bappir with sweet aromatics,<br>
+You are the one who bakes the bappir in the big oven,<br>
+Puts in order the piles of hulled grains,<br>
+<br>
+You are the one who waters the maltset on the ground,<br>
+The noble dogs keep away even the potentates,<br>
+You are the one who soaks the malt in a jar<br>
+The waves rise, the waves fall.<br>
+<br>
+You are the one who spreads the cooked mash on large reed mats,<br>
+Coolness overcomes.<br>
+<br>
+You are the one who holds with both hands the great sweet wort,<br>
+Brewing with honey and wine (You the sweet wort to the vessel)<br>
+The filtering vat, which makes a pleasant sound,<br>
+You place appropriately on a large collector vat.<br>
+<br>
+Ninkasi, you are the one who pours out the filtered beer of the collector vat,<br>
+It is [like] the onrush of Tigris and Euphrates.<br>
+					
+					</p>
+				</div>
+				<div class="box">
+					<img src="img/ninkasi.jpg">
+				</div>
+			</div>
+
+<!-- // ------------------------------------------------------------------------------------------------- // -->
+
+			<div id="unite">
+				<div class="box">
+					<iframe src="https://www.google.com/maps/d/embed?mid=znVsS6usODek.k5p2LVUntTls&hl=en&zoom=7" width="640" height="480"></iframe>	
+				</div>
+				<div class="box" style="padding-bottom:7px">
+					<h3><br>Look at how many people joined in and brewed Unite Red Ale on International Women's Collaboration Brew Day!</h3>
+					<p>	
+					<br>
+					We've got a cask of the one that <a href="http://www.wildcardbrewery.co.uk/about-us.html">Jaega from Wild Card Brewery </a> in East London made with <a href="http://www.buryfreepress.co.uk/news/local/latest-news/sophie-to-brew-up-ideas-for-muntons-1-6494195">Sophie De Ronde (from Muntons Malt)</a>
+					and a bunch of other excellent ladies.  We've also now just confirmed that we have the Unite Red Saison from <a href="http://gyle59.co.uk/our-beers/">Gyle 59</a> too! A great opportunity to try different takes on the base recipe from two very different breweries.
+					<br><br>
+					International Women's Collaboration Brew Day is the brain child of Sophie De Ronde (who is also making us a beer especially for our event).  The concept is that any brewsters who want to join in simply brew their own version of a recipe, on the same day as other participating breweries.  
+					Each brewster adds their own little spin or extra ingredient, for an original take on a blueprint shared across the world.
+					
+					<br><br>
+					Loads of breweries from eleven different countries were involved, 
+					with brewsters in Australia, Brazil, Canada, Japan, Italy, Mexico, New Zealand, Sweden and Switzerland and USA brewing on
+					the same day, and to the same recipe as our folks over here in Great Britain.
+					</p>
+				</div>
+			</div>
+			
+<!-- // ------------------------------END MAIN CONTENT----------------------------------------------- // -->
+			
+			<div id="contactBar">
+				<div id="contactOptions">
+					<div class="menuOption">
+					<a href="https://twitter.com/femalefestival">TWITTER</a>
+					</div>
+					<div class="menuOption">
+					<a href="https://www.facebook.com/brewsterbeerfestival?fref=ts">FACEBOOK</a>
+					</div>		 		
+					<div class="menuOption">
+					<a href="mailto:E.Horton@uea.ac.uk">EMAIL</a>
+					</div>
+					<div class="menuOption">
+					<a href="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=plasterers+arms+norwich&aq=&sll=52.640143,1.28685&sspn=0.120834,0.154495&vpsrc=0&ie=UTF8&hq=&hnear=The+Plasterers+Arms,+43+Cowgate,+Norwich+NR3+1SZ,+United+Kingdom&ll=52.636878,1.299112&spn=0.007553,0.009656&t=m&z=16&iwloc=A">LOCATION MAP</a>
+					</div>	
+				</div>	
+				<div id="plasterers">
+		 		Fem.Ale is held at <a href="http://theplasterersarms.co.uk">The Plasterers Arms</a>, which is a pub on Cowgate in Norwich. Its telephone number is 01603 387525.
+		 		</div>
+			
+						</div>
+
+		</div>
+		
+		<div id="opening">
+			<h1>FEM.ALE</h1>
+			<p>a weekend of beer and music celebrating women in the brewing industry</p>
+			add date to title bar??
+			add beer and cheese panel
+			add pane for another event.
+			add music pane...?
+		</div>
+		
+
+		
+	
+	
+	
+	
+	
+	
+	</body>

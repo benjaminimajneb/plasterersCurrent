@@ -1,0 +1,403 @@
+<html>
+	<head>
+	
+	<style>
+	
+	#paper{ width:550px;
+	height:500px;
+	border:2px solid black;
+	margin-left:10px;
+	}
+	</style>
+		<script src="raphael.js"></script>
+		<script src="oswaldraphael.js"></script>
+		<script src="jquery.js"></script>
+		<script>
+
+var data=[
+	{'name':'Jason','AGEselect':20,'INTAKEselect':50, 'BEERselect':'lager','GENDERselect':'M','PARENTSselect':1},
+	{'name':'John','AGEselect':10,'INTAKEselect':509,'BEERselect':'ale','GENDERselect':'M','PARENTSselect':2},
+	{'name':'Cock','AGEselect':11,'INTAKEselect':502, 'BEERselect':'lager','GENDERselect':'M','PARENTSselect':1},
+	{'name':'Shit','AGEselect':6,'INTAKEselect':40,'BEERselect':'ale','GENDERselect':'F','PARENTSselect':0},
+	{'name':'Beef','AGEselect':71,'INTAKEselect':30, 'BEERselect':'lager','GENDERselect':'M','PARENTSselect':2},
+	{'name':'Fucking Hell John','AGEselect':100,'INTAKEselect':0,'BEERselect':'ale','GENDERselect':'F','PARENTSselect':1},
+	{'name':'Racism','AGEselect':12,'INTAKEselect':2, 'BEERselect':'lager','GENDERselect':'F','PARENTSselect':2},
+	{'name':'Bowl','AGEselect':40,'INTAKEselect':4,'BEERselect':'ale','GENDERselect':'M','PARENTSselect':1},
+	{'name':'Ham','AGEselect':43,'INTAKEselect':8, 'BEERselect':'lager','GENDERselect':'F','PARENTSselect':0},
+	{'name':'Turd Town','AGEselect':25,'INTAKEselect':57, 'BEERselect':'lager','GENDERselect':'F','PARENTSselect':2},
+	{'name':'Hammond','AGEselect':55,'INTAKEselect':99,'BEERselect':'ale','GENDERselect':'F','PARENTSselect':1},
+	{'name':'Gammon','AGEselect':45,'INTAKEselect':45,'BEERselect':'lager','GENDERselect':'M','PARENTSselect':2},
+	{'name':'Gammy','AGEselect':32,'INTAKEselect':3,'BEERselect':'ale','GENDERselect':'F','PARENTSselect':0},
+	{'name':'Spam','AGEselect':33,'INTAKEselect':17,'BEERselect':'lager','GENDERselect':'F','PARENTSselect':1},
+	{'name':'Jam','AGEselect':29,'INTAKEselect':5,'BEERselect':'ale','GENDERselect':'M','PARENTSselect':2},
+	{'name':'Wham','AGEselect':27,'INTAKEselect':13,'BEERselect':'lager','GENDERselect':'M','PARENTSselect':1},
+	{'name':'Keith','AGEselect':68,'INTAKEselect':105,'BEERselect':'ale','GENDERselect':'F','PARENTSselect':2},
+	{'name':'Mummy','AGEselect':54,'INTAKEselect':27,'BEERselect':'lager','GENDERselect':'F','PARENTSselect':0},
+	{'name':'Derek','AGEselect':48,'INTAKEselect':35,'BEERselect':'ale','GENDERselect':'M','PARENTSselect':1},
+	{'name':'Benjamin','AGEselect':62,'INTAKEselect':9,'BEERselect':'ale','GENDERselect':'M','PARENTSselect':0},
+];
+
+/*
+var pintsOfBinge=[];
+for (i in data) {
+	pintsOfBinge[i]=data[i].pintsOfBinge;
+}
+
+console.log(pintsOfBinge);
+				
+//		synonymous with:
+for(num in data){
+	var thisOne=data[num];
+	alert(thisOne.name);
+} 
+				
+*/
+
+//TESTS
+
+function testValue(x){ //here we are testing to see that the value of <select> changes onchange.
+	var val=document.getElementById(x).value;
+	alert(val);
+}
+
+function alertTest(p){ 
+	alert(p);
+	x=document.getElementById('abum').value;
+	alert(x);
+}	
+
+//
+
+//ACTUAL FUNCTIONS
+	
+function clearUp(x){
+	//alert(x);
+	var a = document.getElementById(x);
+	a.selected = 'selected';
+	var b = x + 'select';
+	console.log(b);
+	var c = document.getElementByID(b).value; //- b forms right word 'AGEselect' okay, so why can't we find it?
+	console.log(c);
+}
+
+
+//Loops through select boxes to see if they are set, kicks up warning if more than 2
+function tooMany(optionChosen) {
+	var sets=$('.options'); 
+	//console.log(sets);
+	j=0;
+	
+	for(var i=0;i<sets.length;i++){ // circles through dropdowns to see if it is selected
+				// DAN	for (i in sets) { //this seems to keep looping round i forever, despite size of sets?
+		setId=sets[i].id;
+		setValue=sets[i].value;
+		setValueSelect=setValue+"select";
+		if (setValueSelect!==setId) {
+			j++;
+		}
+		
+	//sets the range and ID of the selected options as variables.
+		if (j==1 && setValueSelect!==setId) {
+			rangeA = setValue;
+			selectIdA = setId;
+			//console.log(rangeA);
+		} else if(j==2 && setValueSelect!==setId){
+			rangeB = setValue;
+			selectIdB =  setId;
+		} 	
+	//cuts out if three options are selected
+		if(j==3){
+			alert("Please select only two options");
+			$('#'+optionChosen).attr('selected', 'selected');
+			break;
+		}
+	}  
+}
+
+
+function findCircleSize(){
+	// pulls numerical values out of option value, to set them as bounds
+	var separateA=rangeA.split(",");
+	var lowerBoundA = parseFloat(separateA[0]);
+	var upperBoundA = parseFloat(separateA[1]);
+	if(isNaN(lowerBoundA)){
+		lowerBoundA=rangeA;
+		upperBoundA=rangeA;
+	}
+	var separateB=rangeB.split(",");
+	var lowerBoundB = parseFloat(separateB[0]);
+	var upperBoundB = parseFloat(separateB[1]);
+	if(isNaN(lowerBoundB)){
+		lowerBoundB=rangeB;
+		upperBoundB=rangeB;
+	}
+	console.log("Upper bound for data A is " + upperBoundA);
+	console.log("Lower bound for data A is " + lowerBoundA);
+	console.log("Object Name for data A is " + selectIdA);
+	console.log("Upper bound for data B is " + upperBoundB);
+	console.log("Lower bound for data B is " + lowerBoundB);
+	console.log("Object Name for data B is " + selectIdB);
+
+	//pulls data from matching id that is within bounds, then counts size.
+	var chosenDataA=0;
+	for (i in data) {
+		if (data[i][selectIdA] <= upperBoundA && data[i][selectIdA] >= lowerBoundA) {
+		chosenDataA++;
+		}
+	}
+	
+	circleAreaA=chosenDataA;
+	console.log("circle area A is " + circleAreaA);
+//combine these last two to condense. - don't need chosenDataA variable.
+
+	var chosenDataB=0;
+	var i=0;
+	for (i in data) {
+		if (data[i][selectIdB] <= upperBoundB && data[i][selectIdB] >= lowerBoundB) {
+		chosenDataB++;
+		}
+	}
+	circleAreaB=chosenDataB;
+	console.log("circle area B is " + circleAreaB);
+	
+	//Find area of intersection
+	crossoverAB=0;
+	for (i in data) {
+		if (data[i][selectIdA] <= upperBoundA && data[i][selectIdA] >= lowerBoundA && data[i][selectIdB] <= upperBoundB && data[i][selectIdB] >= lowerBoundB) {
+		crossoverAB++;
+		}
+	}
+	//Converts area to radius		
+					/* this syntax does not seem to work, ie passing two variables in to get one out...?
+
+					circleRadiusA=1;
+					circleRadiusB=1;
+					
+					function calcRadius(Area,Radius){
+					Radius = (Area / Math.PI);
+					console.log("area over pi is " + Radius);
+					Radius = Math.sqrt(Radius);
+					console.log("radius is " + Radius); //console tells us this correctly calculates radius, but it doesn't change the value of whatever is put in as Radius.
+					return Radius;
+					}
+					calcRadius(circleAreaA,circleRadiusA);
+					calcRadius(circleAreaB,circleRadiusB);
+					console.log("B Radius is now: "+circleRadiusB);
+					*/
+	function calcRadius(circleArea) {
+	var radius = (circleArea / Math.PI);
+		radius = Math.sqrt(radius);
+		return radius;
+	}
+	circleRadiusA = calcRadius(circleAreaA);
+	circleRadiusB = calcRadius(circleAreaB);
+	radiiDifference = Math.abs(circleRadiusA-circleRadiusB);
+	console.log("d0 = "+radiiDifference);
+	compoundLensDistance=Math.sqrt(Math.abs(Math.pow(circleRadiusA,2)-Math.pow(circleRadiusB,2)));
+}
+
+//FIND DISTANCE BETWEEN CIRCLES
+function testDistance(){
+	godDamnMath1=Math.pow(distance,2) - Math.pow(circleRadiusA,2) + Math.pow(circleRadiusB,2);
+	godDamnMath2=4 * Math.pow(distance,2) * Math.pow(circleRadiusB,2) - Math.pow(godDamnMath1,2);//how is this coming out negative?!!
+	console.log(Math.pow(distance,2));
+	console.log(Math.pow(circleRadiusB,2));
+	console.log(Math.pow(godDamnMath1,2));
+	console.log(godDamnMath2);
+	var chordLength = (1/distance) * Math.sqrt(godDamnMath2); //this is a pow inside a pow, may not work.
+	console.log(chordLength);
+	var angleA=2 * Math.asin(chordLength / (2 * circleRadiusA));
+	var angleB=2 * Math.asin(chordLength / (2 * circleRadiusB));
+
+	if(distance<compoundLensDistance){
+		if(circleRadiusA>circleRadiusB) {
+			angleB=2*Math.PI-angleB;
+		} else {
+			angleA=2*Math.PI-angleA;
+		} 
+	}
+	if(distance==0) { 
+		lensArea=circleAreaA;
+	} else {
+		lensArea = (0.5 * Math.pow(circleRadiusA, 2) * (angleA-Math.sin(angleA))) + (0.5 * Math.pow(circleRadiusB, 2) * (angleB - Math.sin(angleB))); //last term here is a plus sign to rotate wedge round (sections are facing each other!) 
+	}
+
+
+	console.log("distance of "+distance+" => lensArea of "+lensArea);
+	return distance;
+}
+		/* is this equivalent to the below?:
+		distance=0; //ie circles have centre at same point. 
+		while(lensArea<crossoverAB){
+		d=d+0.01;
+		testDistance();
+		}
+		*/
+function findDistance(){
+	for(distance=radiiDifference, lensArea=circleAreaA; lensArea>=crossoverAB; distance=distance+0.01){ //distance start point is difference between radii else if smaller circle is entirely within larger circle, chord length of lens will be imaginary (with respect to smaller circle)
+	//	lensArea=circleAreaA;
+	//	distance=radiiDifference;
+	//	while (lensArea>=crossoverAB || distance>999) {
+	//	distance+=0.01;
+     	testDistance();
+	}
+	console.log("lens area calculated is "+lensArea);
+	console.log("area between circles crossover is "+crossoverAB);
+	console.log("distance between circles = "+distance);
+	console.log("because crossover area is "+crossoverAB);
+}
+
+					/*
+					For a three circle diagram we must solve d for all three intersections separately - this will give us lengths for three sides of the triangle with corners at the centre of each circle.
+					Then height of third circle centre is 2*A/d where d is distance between centres of first two circles, and A is area of triangle = sqrt(s(s-a)(s-b)(s-c))
+					Where s is semiperimeter = (a+b+c)/2
+					Done.
+					*/
+
+//SCALEUP FUNCTION FOR TWO
+function scaleUp(){ // divides length of venn into canvass then multiplies all lengths/radii by that factor to fill whole space
+	//if(distance>0){  //obsolete now we set distance to radiiDifference as starting point.
+		var lengthVenn=distance+(circleRadiusA)+(circleRadiusB);
+		scaleFactor=497/lengthVenn;
+		circleRadiusA=circleRadiusA*scaleFactor;
+		circleRadiusB=circleRadiusB*scaleFactor;
+		distance=distance*scaleFactor;
+		//} else if (circleRadiusA>circleRadiusB){ //sets total length as largest diameter if one circle is entirely within the other
+		//lengthVenn=circleRadiusA;
+		//scaleFactor=500/lengthVenn;
+		//circleRadiusA=circleRadiusA*scaleFactor;
+		//circleRadiusB=circleRadiusB*scaleFactor;
+		//} else { //as above.
+		//lengthVenn=circleRadiusB;
+		//scaleFactor=500/lengthVenn;
+		//circleRadiusA=circleRadiusA*scaleFactor;
+		//circleRadiusB=circleRadiusB*scaleFactor;
+		//} //can condense these last to with some kind of "greater of (a,b)" kind of function
+		
+
+
+}
+					/* SCALEUP FUNCTION FOR THREE
+					Actually instead of working out whether the length or height is larger and scaling up to meet whichever we can, we want to set the paper as the width of the screen and then always scale up to fill the width.
+
+					We then do need a limiting factor for three circles - if the height is much greater than the width we will need to shrink back down again.
+
+					find length of drawing : l = r + R + d
+					Ratio = Paperlength/l 
+					So multiply all Rs and d by ratio.
+
+					-calculate area covered by both 
+					-calculate position of both circles
+					-multiply out to fill canvas
+					*/
+
+//DRAW CIRCLES WITH CALCULATED LENGTHS, ADD KEYS
+function drawCircles(){
+	paper1.clear(paper1); // this syntax is MENTAL doesn't work unless all references to paper are as defined in the var.
+	var circleA = paper1.circle(circleRadiusA, 250, circleRadiusA);
+	circleA.attr({"stroke":"#000", "fill": "#0f0","fill-opacity":0.5} );
+	var circleB = paper1.circle((circleRadiusA+distance), 250, circleRadiusB);
+	circleB.attr({"stroke":"#000", "fill": "#f00","fill-opacity":0.5});
+	paper1.print(20, 250, circleAreaA, paper1.getFont("Oswald", 800), 30).attr({"text-anchor":"middle", "fill":"#0f0"});
+	paper1.print(250, 250, crossoverAB, paper1.getFont("Oswald", 800), 30);
+	paper1.print(460, 250, circleAreaB, paper1.getFont("Oswald", 800), 30).attr({"text-anchor":"start", "fill": "#f00"}); //aligning to right seems a bit patchy!
+//$("#id1:first-child").attr("id")
+}	
+
+function runSelect(chosen){
+	tooMany(chosen);
+	if (j==2){
+	findCircleSize();
+	console.log("circle radii A & B are, respectively, "+ circleRadiusA + " & " + circleRadiusB);
+	findDistance();
+	scaleUp();
+	console.log("circle radii A & B are, respectively, "+ circleRadiusA + " & " + circleRadiusB);
+	drawCircles();
+	}
+}
+		</script>
+	</head>
+	
+	
+	
+	<body>
+
+		<button id="abum" onclick="alertTest('abum')" value="bums">TEST</button>
+
+		<br>
+
+		<form>
+			<select class="options" id="AGEselect"  onchange="runSelect('AGE');">
+				<option id="AGE" selected="selected" value="AGE">AGE</option>
+				<option value="0,20">Under 20</option>
+				<option value="20,30">20-30</option>	
+				<option value="30,40">30-40</option>
+				<option value="40,60">40-60</option>	
+				<option value="last">over 60</option>
+			</select>
+
+			<button type="button" onclick="clearUp('AGE')">Clear</button>
+			<br>
+
+			<select class="options" id="BEERselect" onchange="runSelect('BEER')">
+				<option id='BEER' value="BEER" selected="selected">BEER STYLE PREFERENCE</option>
+				<option>lager</option>
+				<option>ale</option>
+			</select>
+
+			<button type="button" onclick="clearUp('BEER')">Clear</button>
+			<br>
+
+			<select class="options" id="INTAKEselect" onchange="runSelect('INTAKE')">
+				<option id='INTAKE' value="INTAKE" selected="selected">WEEKLY INTAKE</option>
+				<option>No drink</option>
+				<option value="0,5"> Fewer than 5 pints</option>			
+				<option value="5,10"> 5-10 pints</option>
+				<option value="10,20"> 10-20 pints</option>
+				<option value="20,50"> 20-50 pints</option>
+				<option value="50,100"> 50-100 pints</option>
+				<option value="last"> over 100 pints</option>
+			</select>
+
+			<button type="button" onclick="clearUp('INTAKE')">Clear</button>
+			<br>
+
+			<select class="options" id="GENDERselect" onchange="runSelect('GENDER')">
+				<option id='GENDER' value="GENDER" selected="selected">GENDER</option>
+				<option value="M">male</option>
+				<option value="F"> female</option>
+			</select>
+
+			<button type="button" onclick="clearUp('GENDER')">Clear</button>
+			<br>
+
+			<select class="options" id="PARENTSselect" onchange="runSelect('PARENTS')">
+				<option id='PARENTS' value="PARENTS" selected="selected">HOW MANY LIVING PARENTS</option>
+				<option value="2">Both</option>
+				<option value="1">Only one</option>
+				<option value="0">Neither</option>
+			</select>
+
+			<button type="button" onclick="clearUp('PARENTS')">Clear</button>
+			<br>
+			
+		</form>
+		
+
+
+		<div id='paper'>
+
+			<script>
+			//creates canvas on which to later draw venn.
+			var paper1 = Raphael('paper', 500, 500);
+
+
+			</script>
+
+		</div>
+
+
+
+	</body>
+</html>
+

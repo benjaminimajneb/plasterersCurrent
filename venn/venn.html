@@ -1,0 +1,507 @@
+<html>
+	<head>
+		<title>Venn Playground</title>
+		<script src="raphael.js"></script>
+		<script src="oswaldraphael.js"></script>
+		<script src="jquery.js"></script>
+		<script>
+			// This will be replaced with a real server call at some point...
+			function getDataFromServer() {
+				var set1={
+					'pupilIDs': [2, 45],
+					'title': "Bad boys"
+				}
+				var set2={
+					'pupilIDs': [35, 45, 46, 57,35, 2345, 236, 567, 346, 68, 46, 333, 562457],
+					'title': "Tall pupils"
+				}
+				var set3={
+					'pupilIDs': [23, 2, 34567, 457, 346568, 4356, 568, 23456, 456878, 3456, 45, 34356, 34, 45, 36, 345, 235],
+					'title': "Bad girls"
+				}
+				return {'set1':set1, 'set2':set2, 'set3':set3}
+			}
+
+			// Ben, your stuff in here!
+			function drawVenn(set1, set2, set3) {
+				var debugArea=document.getElementById('debug');
+				debugArea.innerHTML="Set1 has <b>"+set1.pupilIDs.length+" pupils</b>, Set2 has <b>"+set2.pupilIDs.length+" pupils</b>, Set3 has <b>"+set3.pupilIDs.length+" pupils</b>";
+				// ... work magic ...
+			}
+			
+//ORDER THREE SETS BY SIZE Returns an array, smallest first.
+			function sizeOrder(set1,set2,set3){
+				var sets = [set1,set2,set3]; 					
+
+				sets.sort(function(a, b) {	
+					 if (a.pupilIDs.length==0){
+					 	return  1; 
+					 } else if(a.pupilIDs.length < b.pupilIDs.length) { 
+					 	return -1; 
+					 }
+					 if (b.pupilIDs.length==0){
+					 	return -1; 
+					 } else if(a.pupilIDs.length > b.pupilIDs.length){
+					 	return  1; 
+					 }
+					 return 0;
+ 				 });
+
+				if (sets.length==1){
+					sets[1]=[];
+					sets[2]=[];
+				} 
+				if (sets.length==2){
+					sets[1]=[];
+				}
+				return sets;
+			}
+			/*	
+// original version with only an array
+			function sizeOrder(set1,set2,set3){
+				var sets = [set1,set2,set3]; 					
+
+				//var setsLength =[set1.length,set2.length,set3.length];
+				sets.sort(function(a, b) {	
+					 if (a.length==0){
+					 	return  1; 
+					 } else if(a.length < b.length) { 
+					 	return -1; 
+					 }
+					 if (b.length==0){
+					 	return -1; 
+					 } else if(a.length > b.length){
+					 	return  1; 
+					 }
+					 return 0;
+ 				 });
+
+				if (sets.length==1){
+					sets[1]=[];
+					sets[2]=[];
+				} 
+				if (sets.length==2){
+					sets[1]=[];
+				}
+				return sets;
+			}
+*/
+				
+// FIND size of intersections of all sets.	
+			function inBothSets(A,B){
+				var setBoth=[];
+				var k=0;
+				for(var i in A){ 
+					for(var j in B) {
+						if (A[i]==B[j]) {
+							setBoth[k]=A[i];
+							k++;
+							i++;
+							} else {
+							j++;
+						}
+					}
+				}
+				return setBoth;
+			}
+			
+			function intersections(array){
+				var A=array[0]
+				var B=array[1]
+				var C=array[2]
+				var AB=inBothSets(A,B);
+				var AC=inBothSets(A,C);
+				var BC=inBothSets(B,C);
+				var ABC=inBothSets(AB,BC);
+				var sizes=[AB.length, AC.length, BC.length, ABC.length];
+				return sizes;
+			}
+
+	//CONVERTS SIZE TO RADIUS
+			function radius(array){
+				rad=Math.sqrt(array.length/Math.PI);
+				return rad;
+				}
+
+	// FINDS AVERAGE SET SIZE (mean average)	
+			function meanSize(rA,rB,rC){
+				var avg=(rA+rB+rC)/3;
+				return avg;
+			}
+			
+	// DISTANCE between 2 circle centres if COMMON ELEMENTS IN ALL THREE SETS (i.e. ABC not empty)		
+			function distanceCentreIntersect(rA,rB) {
+				var dist=rA+rB-(0.75*rA);
+				return dist;
+				}
+	
+	// DISTANCE between 2 circle centres if NO COMMON ELEMENTS (ie no intersection between two sets)						
+			function distNoIntersect(rA,rB,avg) {
+				var dist=rA+rB+0.1*avg;
+				return dist;
+			}
+			
+	//DISTANCE BETWEEN ALL THREE SETS when each intersects, but ABC is empty.
+		//THE VERSION WITH THE FOR LOOP, gradually increasing int distance until no centre intersect is found		
+			function intersectNoCentre(rA,rB,rC){
+				var int=0.01;
+				function angle(a,b,c){
+					var A=(Math.pow(b,2)+Math.pow(c,2)-Math.pow(a,2))/(2*b*c);
+					//console.log(A);
+					A=Math.acos(A);
+					//console.log(A);
+					return A;
+				}	
+
+				function testInt(rA,rB,rC,int){ //sets distances between circle centres
+					var dAB=rA+rB-int;
+					var dAC=rA+rC-int;
+					var dBC=rB+rC-int;
+					var AB=angle(dAB,rA,rB);
+					var AC=angle(dAC,rA,rC);
+					var BC=angle(dBC,rB,rC);
+					//console.log("AB "+AB+" AC "+AC+" BC "+BC);
+					var sum=AB+AC+BC;				
+					test=[dAB,dAC,dBC,sum];
+					return test;
+				}
+
+				var test=testInt(rA,rB,rC,int);	//starts with circles circumferences touching, incrementally decreases
+				//console.log(test);
+				while(test[3]>2*Math.PI){
+				//	console.log(test);
+					int+=0.01;
+					test=testInt(rA,rB,rC,int);
+				}
+				
+				int-=0.01;
+				test=testInt(rA,rB,rC,int);
+			//	console.log("resulting interval is "+int);
+				return test;
+
+			}
+
+
+
+//FINDS OFFSET OF THIRD TRIANGLE (returns array as [x-coord, y-coord])	
+			function positionC(dAB,dAC,dBC,rB,rA){
+				var s=(dAB+dAC+dBC)/2;
+				var area=Math.sqrt(s*(s-dAB)*(s-dAC)*(s-dBC));
+				var y=(2*area/(dAB));
+				var x=Math.sqrt(Math.pow(dAC,2)-Math.pow(y,2));
+				// now need to shift onto real situation where A and B centres move down.
+				x=x+rA;
+				y=y+rB;
+				var coord=[x,y];
+				return coord;
+			}
+				
+// FINDS TOTAL WIDTH
+		function totalWidth(rA,rB,rC,dAB,cOffset){
+			var width;
+			var top=rA+rB+dAB;
+			if (cOffset>0) {
+				top=top+cOffset;
+			}
+			
+			if(top<2*rC){
+				width=2*rC;
+			} else {
+				width=top;
+			}
+			return width;
+		}
+	
+// FINDS TOTAL HEIGHT
+		function totalHeight(rA,rB,rC,posC){
+			var y=posC[1];
+			var height=rB+rC+y;
+			return height;
+		}
+	
+// CALCULATES SCALE FACTOR TO FIT WINDOW
+		function sizeScale(rA,rB,rC,dAB,cOffset,posC,windowW,windowH){
+			var scaleFact;		
+			var w=totalWidth(rA,rB,rC,dAB,cOffset);
+			var h=totalHeight(rA,rB,rC,posC);
+			var wFact=windowW/w;
+			var hFact=windowH/h;
+
+			if (w<h){ 
+				scaleFact=hFact;
+			} else {
+				scaleFact=wFact;
+			}
+			return scaleFact;
+		}
+// SCALAR MULTIPLIER for converting object with all lengths/positions to full size		
+		function scaleUp(num,info){ 
+			var scaled={};
+			for (i in info){
+				scaled[i]=info[i]*num;
+				i++;
+			}
+			return scaled;
+		}
+	
+			
+//FINDS POSITION, OF CIRLCE CENTRES, combines into an object, resizes to fit window
+			function findPositions(data){
+// original:	var order=sizeOrder(data.set1.pupilIDs,data.set2.pupilIDs,data.set3.pupilIDs); 
+				var order=sizeOrder(data.set1,data.set2,data.set3)
+				var A=order[0].pupilIDs;
+				var B=order[1].pupilIDs;
+				var C=order[2].pupilIDs;
+			 	console.log("Sets re-ordered into size are:");
+			 	console.log("A: "+A);
+			 	console.log("B: "+B);
+			 	console.log("C: "+C);
+			 	var setSizeArray=[A,B,C];
+			 	var int=intersections(setSizeArray);
+			 	console.log("size of intersections are:");
+			 	console.log("AB: "+int[0]);
+			 	console.log("AC: "+int[1]);
+			 	console.log("BC: "+int[2]);
+			 	console.log("ABC: "+int[3]);
+			 	var rA=radius(A);
+				var rB=radius(B);
+				var rC=radius(C);
+				var avg=meanSize(rA,rB,rC);
+				var dAB;
+				var dAC;
+				var dBC;
+				if (int[3]>0){								
+					dAB=distanceCentreIntersect(rA,rB);
+					dAC=distanceCentreIntersect(rA,rC);
+					dBC=distanceCentreIntersect(rB,rC);
+				} else {
+					if(int[0]>0 && int[1]>0 && int[2]>0){
+						dAB=intersectNoCentre(rA,rB,rC)[0];
+						dAC=intersectNoCentre(rA,rB,rC)[1];
+						dBC=intersectNoCentre(rA,rB,rC)[2];
+					} else {
+						if(int[0]>0){
+							dAB=distanceCentreIntersect(rA,rB);
+						} else {
+							dAB=distNoIntersect(rA,rB,avg);
+						} if(int[1]>0){
+							dAC=distanceCentreIntersect(rA,rC);							
+						} else {
+							dAC=distNoIntersect(rA,rC,avg);
+						} if(int[2]>0){
+							dBC=distanceCentreIntersect(rB,rC);
+						} else {
+							dBC=distNoIntersect(rB,rC,avg);
+						}
+					}
+				}
+				
+				function midpoint(rA,rB,D){ //for finding proportion along d which is halfway length of two circles' lens.
+					var	middle=D-rB+((rA+rB-D)/2);
+					var prop=middle/D;
+					console.log(prop);
+					return prop;
+				}		
+					
+				var posC=positionC(dAB,dAC,dBC,rB,rA);
+				var john={
+					'Ax':rA,
+					'Ay':rB,
+					'AR':rA,
+					'Bx':rA+dAB,
+					'By':rB,
+					'BR':rB,
+					'Cx':posC[0],
+					'Cy':posC[1],
+					'CR':rC,
+				// positions of intersection texts:
+					'midABx':dAB*midpoint(rA,rB,dAB)+rA,
+					'midABy':rB,
+					'midACx':rA+((posC[0]-rA)*midpoint(rA,rC,dAC)),
+					'midACy':rB+((posC[1]-rB)*midpoint(rA,rC,dAC)),
+					'midBCx':(rA+dAB)-(((rA+dAB)-posC[0])*midpoint(rB,rC,dBC)),
+					'midBCy':rB+((posC[1]-rB)*midpoint(rB,rC,dBC)),
+				}
+				var cOffset = rC-posC[0]; //to cope with C being big enough to need to offset diagram so rA isn't flush to left of paper
+				if (cOffset>0){ 
+					john.Ax=john.Ax+cOffset;
+					john.Bx=john.Bx+cOffset;
+					john.Cx=john.Cx+cOffset;
+					john.midABx=john.midABx+cOffset;
+					john.midACx=john.midACx+cOffset;
+					john.midBCx=john.midBCx+cOffset;
+				}
+						
+				if (rB==0) { // to cope with if only one circle!
+					john.Ay=rA;
+				}	
+				var width=totalWidth(rA,rB,rC,dAB,cOffset);
+				var height=totalHeight(rA,rB,rC,posC);
+				var sizeFactor=sizeScale(rA,rB,rC,dAB,cOffset,posC,500,500);
+				console.log("scaling factor is "+sizeFactor);
+
+				var johnNew=scaleUp(sizeFactor,john);
+				console.log("johnNew=");
+				console.log(johnNew);
+				
+				johnNew.A=A.length;
+				johnNew.Atitle=order[0].title;
+				johnNew.B=B.length;
+				johnNew.Btitle=order[1].title;
+				johnNew.C=C.length;
+				johnNew.Ctitle=order[2].title;
+				johnNew.AB=int[0];
+				johnNew.AC=int[1];
+				johnNew.BC=int[2];
+				johnNew.ABC=int[3];
+				var totalData=johnNew.A+johnNew.B+johnNew.C-johnNew.AB-johnNew.AC-johnNew.BC;
+				johnNew.totalData=totalData;
+	
+				var gradAC=(johnNew.Cy-johnNew.Ay)/(johnNew.Cx-johnNew.Ax);
+				var lineConst=johnNew.midACy+(johnNew.midACx/gradAC);
+				
+				johnNew.centreX=johnNew.midABx;
+				johnNew.centreY=lineConst-(johnNew.midABx/gradAC);
+				console.log(johnNew);
+				return johnNew;		
+			}
+
+// FEEDS CIRLCE INFO INTO RAPHAEL
+			var defaultFontSize=16;
+			var defaultFontWeight=200;
+			var defaultStrokeWeight=1;
+		
+			function drawCircles(finalPositions){
+				paper.clear(paper1);
+
+	//CREATE CIRCLES		
+				var circleA = paper.circle(finalPositions.Ax, finalPositions.Ay, finalPositions.AR);
+					circleA.attr({"stroke":"#000", "stroke-weight":0, "fill": "#0ff","fill-opacity":0.25} );
+				var circleB = paper.circle(finalPositions.Bx, finalPositions.By, finalPositions.BR);
+					circleB.attr({"stroke":"#000", "stroke-weight":0, "fill": "#ff0","fill-opacity":0.25} );
+				var circleC = paper.circle(finalPositions.Cx, finalPositions.Cy, finalPositions.CR);
+					circleC.attr({"stroke":"#000", "stroke-weight":0, "fill": "#f0f","fill-opacity":0.25} );
+				var	outlineA=paper.circle(finalPositions.Ax, finalPositions.Ay, finalPositions.AR);
+				var outlineB=paper.circle(finalPositions.Bx, finalPositions.By, finalPositions.BR);
+				var outlineC=paper.circle(finalPositions.Cx, finalPositions.Cy, finalPositions.CR);
+
+	//CREATE INFO NUMBERS
+				var infoA = paper.text(finalPositions.Ax, finalPositions.Ay, finalPositions.A)
+					infoA.attr({"font-size":16, "text-anchor":"middle", "fill": "0000ff", "font-weight":defaultFontWeight,"font-family":"arial"});
+				
+				if(finalPositions.B==0){
+					var infoB =	paper.text(500, 450, "no "+finalPositions.Btitle).attr({"text-anchor":"end"});
+				} else {
+					var infoB =	paper.text(finalPositions.Bx, finalPositions.By, finalPositions.B).attr({"text-anchor":"middle"});
+					var infoAB=paper.text(finalPositions.midABx, finalPositions.midABy, finalPositions.AB).attr({"text-anchor":"middle"});
+				}
+				infoB.attr({"font-size":defaultFontSize, "fill": "#00ff00", "font-weight":defaultFontWeight,"font-family":"arial"});
+
+				if(finalPositions.C==0){
+					var infoC =	paper.text(500, 475, "no "+finalPositions.Ctitle).attr({"text-anchor":"end"});
+				} else {
+					var infoC =	paper.text(finalPositions.Cx, finalPositions.Cy, finalPositions.C).attr({"text-anchor":"middle"});
+					var infoAC=paper.text(finalPositions.midACx, finalPositions.midACy, finalPositions.AC).attr({"text-anchor":"middle"});
+					var infoBC=paper.text(finalPositions.midBCx, finalPositions.midBCy, finalPositions.BC).attr({"text-anchor":"middle"});
+					var infoABC=paper.text(finalPositions.centreX, finalPositions.centreY, finalPositions.ABC).attr({"text-anchor":"middle"});
+				}	
+				infoC.attr({"font-size":defaultFontSize, "fill": "#ff0000", "font-weight":defaultFontWeight,"font-family":"arial"}); //aligning to right seems a bit patchy!
+			
+			//	function fadeUnfade(){
+			//	}	
+			//	document.addEventListener('mousemove',fadeUnfade)
+				var mousePosx, mousePosy;
+				document.onmousemove=function(e){
+					var offset=$('#paper1').offset();
+					mousePosx=e.pageX-offset.left;
+					mousePosy=e.pageY-offset.top;
+				
+					if(circleA.isPointInside(mousePosx,mousePosy)==true){
+						circleA.animate({"fill-opacity":0.35},100);
+						outlineA.animate({"stroke-width":4},100);
+					} else {
+						circleA.animate({"fill-opacity":0.2},100);
+						outlineA.animate({"stroke-width":1},100);
+					}
+					if(circleB.isPointInside(mousePosx,mousePosy)==true){
+						circleB.animate({"fill-opacity":0.35},100);
+						outlineB.animate({"stroke-width":4},100);
+					} else {
+						circleB.animate({"fill-opacity":0.2},100);
+						outlineB.animate({"stroke-width":1},100);
+					}
+					if(circleC.isPointInside(mousePosx,mousePosy)==true){
+						circleC.animate({"fill-opacity":0.35},100);
+						outlineC.animate({"stroke-width":4},100);
+					} else {
+						circleC.animate({"fill-opacity":0.2},100);
+						outlineC.animate({"stroke-width":1},100);
+
+					}
+				}
+			}
+			
+		</script>
+	</head>
+	<body>
+		<h1>Venn Pooground</h1>
+		<p id='debug'></p>
+		<div id='paper1'>
+			<script>
+				// Let's GO!
+				// Note: this script runs AFTER the rest of the page has loaded so that things like #debug exist...
+					//creates canvas on which to later draw venn.
+				var paper = Raphael('paper1', 500, 500);
+				var data=getDataFromServer();
+				console.log(data);
+						
+				var positions=findPositions(data);
+				console.log(positions)
+				var draw=drawCircles(positions);
+				
+				
+							
+		
+			
+
+
+			</script>
+			
+		</div>
+
+	</body>
+</html>
+
+
+function sizeOrder(set1,set2,set3) 
+		// takes arrays of individual elements, returns array of these arrays
+		
+function intersections(array)
+		// takes arrays of three sub arrays, spits out array of four that correspond to different intersections AB, AC, BC, ABC.
+		
+function radius(array)
+		// takes array, spits out integer radius based on number of elements in that array
+		
+function meanSize(rA,rB,rC)
+		// finds mean average of three numbers (should be radii in this case)
+
+function distanceCentreIntersect(rA,rB) 
+		// takes two integers (radii), spits out one integer (distance between circles)
+
+function distNoIntersect(rA,rB,avg) 
+		// takes three integers, spits out one integer
+
+function intersectNoCentre(rA,rB,rC)
+		// takes three integers (radii), spits out array with three distances, AB, AC, BC.
+	
+function positionC(dAB,dAC,dBC)
+		// takes three integers (distances) and spits out one array [x,y] coordinates of centre of lowest circle.
+	
+function sizeScale(rA,rB,rC,dAB,posC,windowW,windowH)
+		// takes four integers (three radii, distance between AB), an array ([x,y] position of C), and the size of the paper frame
+		
+function findPositions(A,B,C) 
+		// takes one array of form [ set1, set2, set3 ] where each set={pupilIDs:[],title:[]}
+
+
+

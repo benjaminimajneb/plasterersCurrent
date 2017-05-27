@@ -1,0 +1,192 @@
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>FEM.ALE 2016</title>
+		<META HTTP-EQUIV=REFRESH CONTENT="1; 
+URL=http://fem.ale-festival.co.uk">
+		<link rel="stylesheet" type="text/css" href="../css/plaster1.css">
+		<script src="../js/jquery-1.10.2.min.js"></script>
+		<script src="../js/raphael.js"></script>
+		<link href='http://fonts.googleapis.com/css?family=Oswald:400,300' rel='stylesheet' type='text/css'>
+		<meta name="description" content="Website for the Plasterers Arms, a beer pub in Norwich">
+		<meta name="keywords" content="Female,Ale,Brewsters,Women,Plasterers,Arms,Beer,Norwich,Pub,Pints,Music,Great,Real Ale,Craft Beer,Cider">
+		<meta name="author" content="Benjamin Andrew Hugo Thompson">
+		<meta charset="UTF-8">
+		
+		<script>
+		//GOOGLE ANALYTICS//
+			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+			ga('create', 'UA-12095952-2', 'auto');
+			ga('send', 'pageview');
+		</script>
+
+		<style>
+			#femaleWebsite{display: block; position: relative; width: 100%; height: 100%; 	font-family: oswaldlight; background-size: cover;background-image:url('img/background.jpg');}
+	
+			#title{position:absolute;top:0;bottom:0;text-align:center;height:200px;width:100%;top:50%;margin-top:-100px}
+			#title h1,h2{letter-spacing:2px;color:white;line-height:20px;text-shadow: 0px 0px 20px #000;}
+		
+			h2 a {display:inline-block;width:100px;height:100px;line-height:100px;font-size:16px;margin-left:25px;	margin-left:25px;border:1px solid black;border-radius:50px; background-color:black;}	
+			#logoBar { width:100%; height:100px;}
+			#logoBar img{ visibility:visible;position:relative;display:block;width:auto;height:100%;margin-left:auto;margin-right:auto;left:0;top:0;}
+			#menuBar{	top:-233px; /* if I set this as margin-top, why does the whole page move up?!*/	position:relative;}
+			#menuOptions{	background-color:rgba(255,255,255,0.7);	max-width:100%;	height:102.22px;	padding:15px;}
+			#menuOptions h2{	padding:0;	margin:0;	border:0;}
+
+			.content{	border-radius:5px;	width:auto;	height:auto;	margin-left:70px;	margin-right:70px;	margin-top:40px;	margin-bottom:40px;	left:0;	right:0;	top:0;	bottom:0;	position:absolute;	visibility:hidden;	background-color:rgba(0,0,0,0.8);	padding:10px;	overflow:scroll;	}
+			.content p{	letter-spacing: 1px;	padding-left:50px;	padding-right:50px;	font-size:16px;}
+			.content h3{	color:white;	text-align:center;	padding-top:10px}
+	
+			#femaleContent{	position:absolute;	top:0;	bottom:0px;	margin-top:232.22px;	margin-bottom:40px;	width:100%;	height:auto;}
+	
+			#linkBottomBar{	width:100%;	background-color:#000;	letter-spacing: 1.5px;	text-align:center;	padding-top:5px;	position:absolute;	height:40px;	bottom:0px;}
+	
+			.photoSelector{	top:45%;	height:50%;	width:20px;	padding-left:20px; padding-right:20px;	text-align:center;	position:absolute;	color:#fff;	font-size:30;}
+			#photoSelectorLeft{	left:0px;}	
+			#photoSelectorRight{	right:0px;}
+			#photo{	display:block;	position:relative;	height:100%;	margin:auto;}
+			#videoFrame{visibility:inherit;	max-width:100%; display:block;	position:relative;	height:100%;	margin:auto;}
+
+		</style>
+		
+		<script>
+		function showContent(id){
+			$('#title').css({'visibility':'hidden'});
+			$('.content').each(function(){$(this).css({'visibility':'hidden'})});
+			$('#'+id).css({'visibility':'visible'});
+		}
+		
+		function changePhoto(e){
+			var oldID=parseInt($(e.target).attr("photoID"));
+			var leftOrRight=$(e.target).parents('.photoSelector').attr('id')=='photoSelectorRight'?1:
+				(oldID==0)?14:-1;
+			var newID=(oldID+leftOrRight)%15;
+			$(e.target).attr('photoID',newID);
+			$('#photo').attr('src','https://googledrive.com/host/0B2xtxnLEGecrVHRma2tUYndKNXc/'+newID+'.jpg');
+		}
+
+		$('document').ready(function(){
+			console.log('setTimeout');
+			setTimeout(function(){
+				$('#title').animate({'margin-top':'15px'},2500);
+				$('#menuBar').animate({'top':'0px'},2500);
+			},2000);
+			$('.photoSelector>a').each(function(){$(this).attr('photoID',0)});
+			var contentWidth=$('.content').width();
+			$('.content>p').css({'padding-left':(contentWidth/6), 'padding-right':(contentWidth/6)});
+			if ($(document).width()<$(document).height()) $('#photo').css({'height':'auto','width':'100%'});
+
+		});
+
+	</script>
+	</head>
+	<body>
+		<div id="femaleWebsite">
+
+			<div id='title'>
+				<h1>FEM.ALE</h1>
+				<h2>BRITAIN'S FIRST BEER AND MUSIC FESTIVAL CELEBRATING GREAT WOMEN IN THE BREWING INDUSTRY</h2>
+			</div>
+
+<!-- // ------------------------- TOP -----------------------------//-->
+			<div id="menuBar">
+				<div id='logoBar'>
+					<img id="logo" src="img/wordlogo.gif">
+				</div>
+				<div id='menuOptions'>	
+					<h2>
+						<a href='#about' onclick='showContent("about");'>ABOUT</a>
+						<a href='#pictures' onclick='showContent("pictures");'>PICTURES</a>
+						<a href='#video' onclick='showContent("video");'>VIDEO</a> 
+						<!--<a href='https://fbstatic-a.akamaihd.net/rsrc.php/v2/y4/r/-PAXP-deijE.gif'>VIDEO</a> -->
+						<a href='female2015.html'>PAST</a>
+						<a href='#future' onclick='showContent("future");'>FUTURE</a>
+					</h2>					
+				</div>
+				
+			</div> <!-- menubar -->
+			
+<!--//------------------- MAIN CONTENT --------------------------//-->
+
+			<div id='femaleContent'>
+		
+				<div class='content' id='about' style='visibilty:visible'>
+					<p>
+FEM.ALE Brewster Beer Festivals is run by a very small group of very enthusiastic Norwich dwelling folk, with big ideas and average sized limbs. We aim to celebrate women in the brewing industry by showcasing their amazing beers and shouting about Brewster histories.
+<br><br>
+As well as our annual festival in May each year we run meet the Brewster beer tastings and beer and food matchings year round and have curated stages for the marvellous Norwich Sound and Vision Festival. Click here to see details of forthcoming events.
+<br><br>
+Our flagship festival features four days dedicated to Brewster beers at the Plasterers Arms. We source ales, lagers, stouts, porters, saisons and anything else we fancy from breweries across the UK and beyond and have been lucky enough to have some incredible one off brews from expert beer technologists created just for the festival. 
+<br><br>
+But it’s not just serving great beer: our festivals host panels of female beer experts, brewsters, authors and historians to give an insight into the brewing industry and enlighten us on the fundamental connection between women and beer throughout the history of human booze-making.
+As well as meet the Brewster beer tastings and food matchings, we love celebrating female creativity in music form too, welcoming female artists and DJs to provide us with the finest sound track to having a beer that you’ll find and always for free.
+					</p>
+				</div>
+			
+				<div class='content' id='pictures'>
+					<div class="photoSelector" id="photoSelectorLeft" onclick="changePhoto(event); return false;"><a href='#'>&lt</a></div>
+						<img id='photo'src='https://googledrive.com/host/0B2xtxnLEGecrVHRma2tUYndKNXc/0.jpg'></img>
+					<div class="photoSelector" id="photoSelectorRight" onclick="changePhoto(event); return false;"><a href='#'>&gt</a></div>
+				</div>
+				
+				<div class='content' id='video'>
+					<iframe id='videoFrame' width="560" height="315" src="https://www.youtube.com/embed/qaFfy6r8zKk" frameborder="0" allowfullscreen></iframe>
+				</div>	
+				<div class='content' id='future'>
+					<h3>Fem.Ale 2016, 3-5th June, Norwich</h3>
+					<p>
+On Friday 3rd June we'll be kicking off the weekend with a beer tasting from a local 
+Brewster, followed by female DJs soundtracking a night of great beers and inviting all 
+to come together to try a plethora of stouts, porters, pales, ambers and golds and 
+dance the night away to a party of women in music. <br/> <br/>
+
+Saturday 4th June we will be holding our annual Beer Experts panel, with women 
+from the brewing industry, beer historians and journalists to impart their years of 
+experience and expertise in making incredible tasting brews. Saturday night will see 
+a night of live music from local female artists in collaboration with Norwich Arts 
+Centre and Pony Up promoter Rosie Arnold, because here at FEM.ALE we think beer 
+and live music are best friends! <br/> <br/>
+
+Our final day on Sunday 5th June will bring more brand new brews on the bar, with 
+some acoustic music in the bar in the afternoon. We'll also be holding our first zine
+and craft fair, inviting local DIY creatives to demonstrate their wares in the 
+Plasterers' splendid surroundings. Punters can browse from zines, prints, paintings 
+and craft pieces while we wind down to our Sunday night session and toast a final 
+celebration to the ingenious women at the forefront of the brewing industry and 
+encourage all to change any perception that fine ale is not a drink for women. 
+We want all people to feel welcome at FEM.ALE so we invite everyone to come, 
+drink and be merry! Stand by for more info and line-up news and we'll see you in 
+June! <br/>
+					</p>
+					<h3>Fem.Ale Brighton 6-8th May </h3>
+					<p>
+						Fem.Ale festival is going on the road! For three days we'll be taking over the taps at <a 
+href='http://www.marlboroughtheatre.org.uk/'> The Marlborough </a> to 
+showcase some of the finest brewster-made stouts, saisons, pilsners and pales. 
+Alongside all this deliciousness, we'll be hosting talks with some of the best brewers in the country, DJ dance-offs into the night and a live music street 
+party all day on Saturday.
+					</p>
+				</div>			
+			</div>			<!-- id='content' -->
+			
+			<div id="linkBottomBar">
+				<h3>
+					<a href="https://twitter.com/femalefestival">TWITTER</a>
+					&bsp
+					<a href="https://www.facebook.com/brewsterbeerfestival?fref=ts">FACEBOOK</a>
+					&bsp
+					<a href="mailto:E.Horton@uea.ac.uk">EMAIL</a>
+					&bsp
+					<a href="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=plasterers+arms+norwich&aq=&sll=52.640143,1.28685&sspn=0.120834,0.154495&vpsrc=0&ie=UTF8&hq=&hnear=The+Plasterers+Arms,+43+Cowgate,+Norwich+NR3+1SZ,+United+Kingdom&ll=52.636878,1.299112&spn=0.007553,0.009656&t=m&z=16&iwloc=A">LOCATION MAP</a>
+				</h3>
+			</div> <!-- id="linkBottomBar" -->
+
+
+
+		</div>	<!-- id='femaleWebsite' -->
+
+	</body>
+</html>

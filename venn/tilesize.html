@@ -1,0 +1,268 @@
+<html>
+	<head>
+		<title>Maximal Tile Coverage Tool</title>
+		<script src="raphael.js"></script>
+		<script src="jquery.js"></script>
+		<style>
+			
+			#explanation{
+				clear: both;
+				width: 100%;
+			}
+			
+			#screenContainer{
+				position: relative;
+				float: left;
+				background-color: yellow;
+				width:70%;
+			}
+			
+			#tileContainer {
+				background-color: orange;
+				position: relative;
+				float: left;
+				width:30%;
+				height:300;
+			}
+	
+			#numberForm { 
+				-webkit-appearance: none;
+				height:300;
+				vertical-align:top;
+				position: relative;
+				float: left;
+			}
+			
+			form{
+				padding:0px;
+				margin:0px;
+				vertical-align:top
+			}
+
+			#numberChosen {
+				height:30px;
+				width:50px;
+				
+			}
+			
+			#spinner {
+			display:inline-block;		
+			}
+			
+			#up{
+				background-color:gray;
+				border:1px black solid;
+				height:15px;
+				width:15px;
+			}
+			
+			#down{
+				background-color:gray;
+				border:1px black solid;
+				height: 15px;
+				width:15px;
+			}
+		
+		</style>
+		
+		<script>
+	
+//FOR CALCULATING LAYOUT OF TILES
+
+function ratio(x,y){
+	var r=x/y;
+	return r;
+}
+function findLayout(data){
+	function findFactors(rat,num){
+		var root=Math.sqrt(num/rat);
+		var rowsUp=Math.ceil(root); //always higher than equivalent factor in R
+		var colsUpPair=Math.ceil(num/rowsUp); // could be higher OR lower than equiv f in R
+		var rowsDown=rowsUp-1; //always lower than equivalent factor in R
+		var colsDownPair=Math.ceil(num/rowsDown);
+		return [rowsUp,colsUpPair,rowsDown,colsDownPair];
+	}
+	var tileRatio=ratio(data.tileX,data.tileY);
+	var numCols;
+	var tileHeight;
+	var tileWidth;
+	var factors=findFactors(ratio(ratio(data.screenX,data.tileX),ratio(data.screenY,data.tileY)),data.numberTiles);
+//ASSUME UP:
+	var tileHeightUp=data.screenY/factors[0]; //from rows rounded UP.
+	var tileWidthUp=tileHeightUp*tileRatio;
+	var colsTest=tileWidthUp*factors[1];
+	if (colsTest>data.screenX){ 
+		tileWidthUp=data.screenX/factors[1];
+		tileHeightUp=tileWidthUp/tileRatio;
+	}
+//ASSUME DOWN:
+	var	tileWidthDown=data.screenX/factors[3];  //calculated from no. columns when row factor rounded down
+// TEST WHICH IS BIGGER:
+	if (tileWidthUp>tileWidthDown){
+		 tileHeight=tileHeightUp;
+		 tileWidth=tileWidthUp;
+		 numCols=factors[1];
+		} else {
+		tileWidth=tileWidthDown;
+		tileHeight=tileWidth/tileRatio;
+		numCols=factors[3];
+		}
+	return [tileWidth,tileHeight,numCols];
+}
+
+//BUILD TILES IN SCREEN
+function layTiles(data){
+	var resized=findLayout(data);
+	tileSet.remove(); //clears tiles from last input of data.
+	tileSet=screenPaper.set();
+	for(var i=1; i<=data.numberTiles;i++){
+		var whichRow=Math.ceil(i/resized[2])-1;
+		var addVertical=whichRow*resized[1];
+		var addHorizontal=((i-1)%resized[2])*resized[0];
+		var newTile=tileSet.push(
+		screenPaper.add([
+			{type: "rect",
+        x: 10+addHorizontal,//need change to incorporate new rows.
+        y: 10+addVertical,
+        width: resized[0],
+        height: resized[1],
+        fill: "#fff"
+    	}])
+    );
+	}
+}
+
+//FINDS POSITIONS AND SIZES, THEN DRAWS OUT TILES
+	function draw(){
+	data=compileData();
+	console.log(data);
+	layTiles(data);
+	}
+ 							
+//FOR RESIZING SCREEN & TILE								
+	function getPositions(){
+		this.ox = this.attr("cx");
+		this.oy = this.attr("cy");
+		var idLink=this.idLink;
+		var paperId=idLink+"Paper";
+		var paper=eval(paperId);
+		var rectangle=paper.getById(idLink);
+		rectangle.originalWidth=rectangle.attr("width");
+		rectangle.originalHeight=rectangle.attr("height");
+	}	
+	function dragResize(dx, dy) {	      
+		this.attr({ cx: this.ox + dx, cy: this.oy + dy });
+		idLink=this.idLink;		//find relevant rectangle
+		var paperId=idLink+"Paper";
+		var paper=eval(paperId);
+		var rectangle=paper.getById(idLink);
+		var originalWidth=rectangle.originalWidth; //find original size
+		var originalHeight=rectangle.originalHeight;
+		rectangle.attr({ width: originalWidth + dx, height: originalHeight + dy });		//change attr to larger size
+	}
+								
+		</script>
+	</head>
+	
+	<body>
+		<h1>A basic tool for covering maximum space with tiles of varying shape and number.</h1>
+		<div id="screenContainer">
+			Drag dot to resize canvas to be tiled, pls.
+			<div id='screen'>
+					<script>
+						//DRAW SCREEN CANVAS AND INITIAL SCREEN
+								screenPaper = Raphael('screen', 800, 600);
+								screenSize=screenPaper.rect(10, 10, 400,400);
+								var screenPoint=screenPaper.circle(410,410,5);
+								screenPoint.attr({"stroke-weight":1, "fill":"0f0"});
+								screenSize.attr({"stroke":"#000", "stroke-weight":10, "fill": "#0ff","fill-opacity":0.3} );
+								screenPoint.drag(dragResize,getPositions,draw);
+								screenPoint.idLink="screen";
+								screenSize.id="screen";
+								tileSet=screenPaper.set();						
+					</script>
+				</div>
+			</div>
+			
+			<div id="tileContainer">
+							Drag dot to re-shape tile, pls.
+				<div id="tile">
+							<script>
+							//DRAW TILE CANVAS AND INITIAL TILE
+								var tilePaper = Raphael('tile', 200, 300);
+								tileSize=tilePaper.rect(10, 10, 50,50);
+								tileSize.attr({"stroke":"#000", "stroke-weight":10, "fill": "#0ff","fill-opacity":0.3} );
+								var tilePoint=tilePaper.circle(60,60,5);
+								tilePoint.attr({"stroke-weight":1, "fill":"0f0"});
+								tilePoint.drag(dragResize,getPositions,draw);
+								tilePoint.idLink="tile";
+								tileSize.id="tile";
+								
+							//BUILD SIZE OBJECT
+								function compileData(){
+									var data={
+									"screenX":screenSize.attr("width"),
+									"screenY":screenSize.attr("height"),
+									"tileX":tileSize.attr("width"),
+									"tileY":tileSize.attr("height"),
+									"numberTiles":$("#numberChosen").val()
+									}		
+									return data;
+								}						
+							</script>
+				</div>
+			</div>
+			
+				<div id="numberForm">
+					Select number of tiles to fit on canvas, pls.
+					
+					<script>
+						function spinUp(){
+							console.log("spinUp");
+							currentVal=$("#numberChosen").value;
+							console.log(currentVal);
+							currentVal++;
+							$("#numberChosen").value=currentVal;
+						}
+
+					function spinDown(){	
+						console.log("spinDown");
+					}
+				
+					</script>
+					
+ 					<form>
+						<input id="numberChosen" type="number" value="0" step="1" min="1" max="500" onchange="draw()">
+				<!--		<div id="spinner">
+							<div id="up" onclick="spinUp">
+							</div>
+					 
+							<div id="down" onclick="spinDown">
+							</div>
+						</div>
+					-->
+					</form>
+				</div>
+
+
+		</div>
+		
+		<div id="explanation">
+		This engine works by:
+		<ol>
+			<li> Comparing the aspect ratio of the screen and the tile, and mapping onto one 'ideal' ratio <b>I</b> that combines the two.</li>
+			<li> Finding the unique factorisation of number of tiles, <b>N</b> in the Real plane whose two factors have ratio <b>I</b>, ie <b>r<sub>1</sub>r<sub>2</sub>=N</b>, where <b>r<sub>2</sub></b>=<b>Ir<sub>2</sub></b>.</li>
+			<li> Mapping this factorisation onto the two factoristions <b>f<sub>1</sub>f<sub>2</sub>=F</b> in the Natural plane that satisfy the following:
+				<ol>
+					<li> At least one factor is greater than its equivalent real factor.</li>
+					<li> <b>F</b>><b>N</b></li>
+					<li> The two <b>F</b>s are the lowest two possible products</li>
+				</ol>
+				And using these factorisations as two possibilities for numbers of rows/columns of tiles in the screen.</li>
+			<li> Testing the two factorisations to see which leads to the greatest possible tile size.</li>
+			<li> Calculating the maximum tile size for the winning numbers of rows/cols.</li>
+			<li>		Laying the tiles of this size out on the screen from left to right, top to bottom.</li>
+		</ol>
+		</div>
+	</body>
+</html>
