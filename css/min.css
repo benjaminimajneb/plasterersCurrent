@@ -80,7 +80,7 @@
 		float:right;
 		text-align:left;
 	}
-	.minBody p{
+	.minBody p, ol, li, i {
 		color:black;
 		font-family: 'Avenir', 'Helvetiva', sans-serif;
 		font-weight:100;
@@ -89,6 +89,10 @@
 		margin:0px;
 		padding:0px;
 		letter-spacing:normal;
+	}
+	.minBody ol {
+		padding-left:30px;
+		font-size: 1em;
 	}
 	
 	.minBody h2 {
