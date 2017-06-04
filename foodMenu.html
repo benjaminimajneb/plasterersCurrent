@@ -19,7 +19,7 @@
 			ga('create', 'UA-12095952-2', 'auto');
 			ga('send', 'pageview');
 		</script>
-		
+
 <!-- Facebook Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -36,13 +36,27 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
 <!-- End Facebook Pixel Code -->
 <script src='js/jquery-1.10.2.min.js'></script>
 <script>
+  var current = false;
 	$(document).ready(function(){
 		var rand = Math.round(Math.random()*10)%3;
-		$('#breakfastImg').attr('src','img/breakfast'+rand+'.gif');
+    $('#breakfastImg').attr('src','img/breakfast'+rand+'.gif');
+    $('.minImg, .minContent').hide();
+    $('.minTitle').click(function(){
+      var menu = $(event.target).parents('.minTitle').data('menu');
+      if (current) {
+        //replace all arrows with down arrows
+        $('.minTitle[data-menu="' + current + '"] .arrow').html('&#8680;');
+        $('.minBody [data-menu="' + current + '"]').hide();
+      }
+      //replace this one with a down arrow
+      $(event.target).children('.arrow').html('&#8681;');
+      $('[data-menu="' + menu + '"]').show();
+      current = menu;
+    })
 	});
 </script>
 	</head>
-		
+
 	<body>
 		<div id='topBar'>
 			<a href="index.html"> <img src='img/pint.gif' /></a>
@@ -50,20 +64,138 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
 		</div>
 		<div id='website'>
 
-			<div class='minTitle'>
-				<a href='https://www.facebook.com/Voodaddy/'> <h1> VOODOO DADDY PIZZA &#8680; <h1></a>
-				<h1>&nbsp; </h1>
-				<h1> BREAKFASTS &#8681;</h1>
+      <div class='minTitle' data-menu='pizza'>
+				<h1> PIZZA <span class='arrow'> &#8680; </span> </h1>
 			</div>
-			<div class='minBody'>
-				<div class="minImg" id="breakfastPic">
-					<img alt="A picture of one of many possible courses of breakfast" id=breakfastImg>
+
+    	<div class='minBody'>
+        <!-- pizza pic -->
+				<div class="minImg" data-menu='pizza' id="pizzaPic">
+					<img src='img/pizza.gif' alt="A picture of a slice of pizza" id='pizzaImg'>
 				</div>
-				<div class="minContent" id="foodMenu">
+        <!-- pizza menu -->
+        <div class="minContent" data-menu='pizza' id="foodMenu">
+          <h2> EVERY DAY 5PM-10PM; WEEKENDS 2PM-11PM </h2>
+          <h3> No Meat </h3>
+          <p>
+            <b> Margherita </b> &emsp; [7.50]
+            <br> Tomato base, mozzarella, basil.
+            <br>
+            <br> <b> Zorba The Greek </b> &emsp; [9.00]
+            <br> Tomato base, spinach, roasted red peppers, black olives, drizzle of pesto, mozzarella, fresh tomatoes & crumbled feta.
+            <br>
+            <br> <b> The Priestess </b> &emsp; [9.00]
+            <br> Tomato base, spinach, roasted red peppers, courgettes, mozzarella, sun-dried tomatoes, a drizzle of pesto & crumbled feta.
+          </p>
+          <h3> No Tomato </h3>
+          <p>
+              <b> Salmon  </b> &emsp; [9.50]
+            <br> Cream cheese base with smoked salmon, dill, lemon.
+            <br>
+            <br> <b> Reuben </b>  &emsp; [8.50]
+            <br> Plain butter base, corned beef, sauerkraut, gherkins, Swiss cheese, thousand island dressing.
+          </p>
+          <h3> No Animals At All </h3>
+          <p>
+            <b> Vegan Mafia </b>  &emsp; [8.50]	(vegan)
+            <br> Tomato base, roasted garlic, red onions, spinach, broccoli, roasted red peppers, black olives, mushrooms, courgettes, finished off with a balsamic vinegar dressing.
 
-					<h2> WEEKENDS 10AM-4PM </h2>
+          </p>
+          <h3> No Care In The World </h3>
+          <p>
+            <b> Tuna </b>  &emsp; [9.00]
+            <br> Tomato base with tuna, mozzarella, red onions, capers, parsley, olive oil.
+            <br>
+            <br> <b> Jerk Chicken </b> &emsp; [8.50]
+            <br> Tomato base, jerk marinated chicken, black beans, red pepper, pineapple, mozzarella. (served with bottle of hot sauce!)
+            <br>
+            <br> <b> Korean BBQ </b> &emsp; [8.50]
+            <br> Special BBQ base, mozzarella, char sui pulled pork, spinach, spring onion and hoisin glaze.
+            <br>
+            <br> <b> Thai Shrimp </b> &emsp; [9.50]
+            <br> Sweet chilli base, red onions, spinach, roasted red peppers, prawns, mozzarella. Finished off with a drizzle of sweet chilli sauce.
+            <br>
+            <br> <b> The Daddy </b> &emsp; [9.00]
+            <br> Tomato base, chorizo, pepperoni, crumbled meatballs, mozzarella.
+            <br>
+            <br> <b> Canadian Hot </b> &emsp; [9.00]
+            <br> Tomato base, pepperoni, bacon, jalapeños, mozzarella.
+            <br>
+            <br> <b> BBQ Eastwood </b> &emsp; [8.50]
+            <br> Tomato base with BBQ sauce, chicken, bacon, pineapple, roasted red peppers, mozzarella cheese, finished with a home made ranch dressing & coriander.
+          </p>
+        </div>
+      </div>
 
-					<h3> Bloody Marys: &emsp;[5.00] </h3> 
+
+
+      <div class='minTitle' data-menu='lunch'>
+      	<h1> LUNCH <span class='arrow'> &#8680; </span> </h1>
+      </div>
+
+      <div class='minBody'>
+        <!-- lunch pic -->
+        <div class="minImg" data-menu='lunch' id="lunchPic">
+          <img src='img/wrap.gif' alt="A picture of one of many possible delicious lunches" id='lunchImg'>
+        </div>
+
+        <!-- lunch menu -->
+        <div class="minContent" data-menu='lunch' id="foodMenu">
+          <h2> WEEKDAYS 12-3PM </h2>
+          <h3> WRAPS &emsp;[4.00] </h3>
+          <p>
+            <b>Korean BBQ</b> - BBQ sauce, spinach, spring onions, char Sui pulled pork, mozzarella and hoisin glaze.
+            <br>
+            <b>Jerk Chicken</b> - Jerk marinated chicken, spinach, black beans, red peppers, mozzarella and sriracha hot chilli sauce.
+            <br>
+            <b>Tuna</b> - Tuna, red onions, spinach, capers, mozzarella & Fresh Tomatoes
+            <br>
+            <b> Reuben </b>- Sauerkraut, corned beef, gherkins, Swiss cheese and thousand island dressing.
+            <br>
+            <b>Halloumi </b>- Halloumi, spinach, red onions, roasted red peppers, courgettes and Korean bbq sauce.
+          </p>
+          <h3> PIZZAS 2 FOR £10 </h3>
+          <p>
+            <b>Margherita </b> - Tomato base, mozzarella, basil.
+            <br>
+            <b>The Priestess </b> - Tomato base, spinach, roasted red peppers, courgettes, mozzarella, sun-dried tomatoes, a drizzle of pesto & crumbled feta.
+            <br>
+            <b>Vegan Mafia </b> - Tomato base, roasted garlic, red onions, spinach, broccoli, roasted red peppers, black olives, mushrooms, courgettes, finished off with a balsamic vinegar dressing.
+            <br>
+            <b>Canadian Hot </b> - Tomato base, pepperoni, bacon, jalapeños, mozzarella.
+            <br>
+            <b>BBQ Eastwood </b>- Tomato base with bbq sauce, chicken, bacon, pineapple, roasted red peppers, mozzarella cheese, finished with a home made ranch dressing & coriander.
+          </p>
+          <h3> SANDWICHES & ROLLS </h3>
+          <p>
+            Bacon &emsp;[2.50]
+            <br>
+            Bacon & Egg &emsp;[3.00]
+            <br>
+            Sausage &emsp;[2.50]
+            <br>
+            Sausage & Egg &emsp;[3.00]
+            <br>
+            Fish fingers, lettuce & tartare &emsp;[3.80]
+          </p>
+        </div>
+      </div>
+
+      <div class='minTitle' data-menu='breakfast'>
+				<h1> WEEKEND BREAKFASTS <span class='arrow'> &#8680; </span> </h1>
+			</div>
+      <div class='minBody'>
+
+        <!-- breakfast pic -->
+        <div class="minImg" data-menu='breakfast' id="breakfastPic">
+          <img alt="A picture of one of many possible courses of breakfast" id='breakfastImg'>
+        </div>
+        <!-- breakfast menu -->
+				<div class="minContent" data-menu='breakfast' id="foodMenu">
+
+					<h2> SAT &amp; SUN 10AM-3PM </h2>
+
+					<h3> Bloody Marys: &emsp;[5.00] </h3>
 					<p>
 						The Brain - Adnams vodka, tomato juice, beef consommé, Worcestershire sauce, horseradish, pepper, cayenne, paprika
 						<br>
@@ -71,7 +203,7 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
 						<br>
 						The Basket Case - whisky, tomato juice, pickle juice, beetroot
 							- The Classic - Adnams vodka & a big tom spice it how you like!
-					</p>	
+					</p>
 
 					<h3> SANDWICH OR ROLL </h3>
 					<p>
@@ -88,7 +220,7 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
 						<br>
 						Hash brown, Egg or Mushroom &emsp;[1.00]
 						</p>
-			
+
 						<h3> FULLY LOADED ROLLS </h3>
 						<p>
 						Standard - Bacon, sausage, hash brown & egg &emsp;[4.50]
@@ -103,7 +235,7 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
 					</p>
 
 
-			
+
 					<h3> FRYS (all served with toast) </h3>
 					<p>
 						Veggie Fry - 2x V Sausage, Halloumi, Hash Browns,  Grilled Tomato and all of the trimmings &emsp;[6.00]
@@ -114,7 +246,7 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
 						<br>
 						Big Boy Fry - 2x Jumbo Sausage, 3x Bacon, 2x Egg, 2x Black Pudding plus all the trimmings. &emsp;[9.00]
 					</p>
-			</div>		
-		</div>
-	
-	</body>
+        </div>
+      </div>
+    </div>
+  </body>
