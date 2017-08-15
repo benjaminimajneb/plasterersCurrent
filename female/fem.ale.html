@@ -1,0 +1,624 @@
+<DOCTYPE! html>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<html>
+	<head>
+		<title> FEM.ALE - Brewster Festival 23-25 May </title>
+		<style>
+			@font-face {
+    font-family: 'oswaldlight';
+    src: url('../fonts/oswald-light-webfont.eot');
+    src: url('../fonts/oswald-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/oswald-light-webfont.woff') format('woff'),
+         url('../fonts/oswald-light-webfont.ttf') format('truetype'),
+         url('../fonts/oswald-light-webfont.svg#oswaldlight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+			}
+			
+			/* COLOUR PALETTE
+			
+				ALE light blue		#70cffb
+				FEM dark blue 		#00aeed
+				BANNER blue grey	#a0def7
+				SHIRT bright blue	#02bef3
+				HIGHLIGHT turquoise	#01ffff
+				
+			*/
+		
+			body {background-color:#a0def7;
+				margin:2%;
+				}
+				
+			h2{ font-size:18px;
+				font-family:oswaldlight;
+				text-align:center;
+				color:#00000;
+				}
+			
+			p { margin-top:10px;
+				margin-bottom:10px;
+				font-size:15px;
+				font-family:oswaldlight;
+				color:#00000;
+				text-align:left;
+				vertical-align:top;
+				margin-right:5%;
+				margin-left:5%;
+
+				}
+			
+			p.subhead { margin-top:10px;
+				margin-bottom:10px;
+				font-size:16px;
+				font-family:oswaldlight;
+				color:#00000;
+				text-align:center;
+				vertical-align:top;
+				width:60%;
+				margin-left:20%;
+				}
+
+			a {color:green;
+				}
+			
+			div { margin-top:50px;
+					display: inline-block;		
+			}			
+			
+			div.logo { width:60%;
+					position:relative;
+					left:20%;
+					display: inline-block;	
+					margin-top:0px;	
+			}
+			
+			img {border:0;
+			}
+			
+			img.logo { border:0;
+			max-width:100%;
+			max-height:100%;
+			width:100%;
+			}
+			
+			img.word { position:absolute;
+						left:20%;
+    					max-width: 60%;
+  						height: auto;
+   						width: auto\9; /* ie8 */
+   						z-index:1;
+   						top:-50%;
+			}
+			
+			img.whole { position:absolute;
+						left:20%;
+						max-width: 60%;
+						height: auto;
+   						width: auto\9; /* ie8 */
+   						z-index:-1;	
+						top:-50%; 						
+   						visibility:hidden;
+			}
+			
+/* when both images in div container are absolute, div loses its height attribute, so 
+	text beneath hops up underneath images.  When one is relative, its sixe defines the div around it, but
+	(presumably because of this fact) it cannot have its position determinted by %of div...
+	That is, if the image height defines the height of the div, we cannot then use the div height to define the
+	position of the image!
+	
+	 HENCE: fix for defining size of div. */
+
+			
+			img.sizer { position:relative;
+						left:20%;
+						max-width: 35%;
+						height: auto;
+   						width: auto\9; /* ie8 */
+   						z-index:-1;	
+					/*	top:-50%; */   						
+   						visibility:hidden;
+			}
+			
+			/*seemingly comments in CSS cannot be written like normal html comments... */
+
+			table { border-collapse:collapse;
+					border:0px solid black;
+					table-layout:fixed;
+					padding:0px;
+					margin:0px;
+			}
+			
+			td {font-size:15px;
+				font-family:oswaldlight;
+				color:#00000;
+				vertical-align:top;
+				padding:1%;
+				border:0px solid black;
+				}
+				
+			th { font-size:18px;
+				font-family:oswaldlight;
+				color:#00000;
+				text-align:center;
+				padding-bottom:20px;
+				}
+				
+			table#main { width:90%;
+					margin-left:5%;
+					margin-right:5%;
+					white-space:normal;
+			}
+	
+	
+			
+			table#banner { border-radius:10px;
+					text-align:center;
+					width:60%;
+					margin-left:20%;
+					margin-right:20%;
+					background-color:#02bef3;
+					}
+		
+		
+			
+			table.logos { border-radius:10px;
+					text-align:center;
+					max-width:90%;
+					min-width:90%;
+					margin-left:5%;
+					margin-right:5%;
+					}
+					
+			table.logos td { width:10%;
+			padding:0.5%;
+					}	
+					
+					
+					
+			table.findus { text-align:center;
+					max-width:60%;
+					min-width:60%;
+					margin-left:20%;
+					}
+					
+			table.follow td { 
+					width:20%;
+					}
+			
+			td#address { width:40%;
+			max-width:40%;
+			min-width:40%;
+			padding-left:1%;
+			padding-top:0px;
+			margin:0%;
+			text-align:left;
+				}
+				
+			td#plasterers { width:8%;
+			max-width:8%;
+			min-width:8%;
+			padding:0%;
+			margin:0%;
+				}
+			
+			td#socialmedia { width:40%;
+			max-width:40%;
+			min-width:40%;
+			padding:0%;
+			margin:0%;
+			text-align:center;
+			}
+					
+
+			table.events { 
+					border-radius:20px;
+					padding:1%;
+					text-align:left;
+					table-layout:fixed;
+					width:100%;
+					border-collapse:collapse;
+			}
+				
+			th#events { font-size:18px;
+				font-family:oswaldlight;
+				background-color:#70cffb;
+				color:#00000;
+				text-align:left;
+				padding-left:5%;
+				border-top-right-radius:20px;
+				}
+								
+			td.events { padding-top:0%;
+					padding-left:4%;
+					width:60%;
+					text-align:left;
+					}
+			
+			td#topleft { border-top-left-radius:20px;
+					}
+					
+			td#bottomleft { border-bottom-left-radius:20px;
+					}
+			td#bottomright { border-bottom-right-radius:20px;
+					}
+			
+			table.events td { font-size:14.5px;
+			padding-top:5%;
+
+			}		
+			
+			table.events td:nth-child(1) { 
+				background-color:#00aeed;
+				width:20%;
+				}
+				
+			table.events td:nth-child(2)  { 
+				background-color:#02bef3;
+				width:15%;
+				}
+				
+			table.events td:nth-child(3)  { 
+				background-color:#70cffb;
+				width:65%;
+				}
+
+		</style>
+		
+		
+	</head>
+	
+	
+	<body>
+		<div class="logo">
+			<img id="whole" class="whole" src="femalewhole.gif">
+			<img id="sizer" class="sizer" src="femalewhole.gif" >
+			<img id="word" class="word" src="femaleword.gif" >
+
+
+		</div>
+		
+		<table id="banner">
+			<tr>
+			<td>
+		// A weekend of beer and music celebrating women in the brewing industry // Friday 23rd - Sunday 25th May //
+			</td>
+			</tr>
+		</table>
+	
+	
+		<div>
+
+			<table id="main">
+				<tr>
+						
+					<td>
+						<h2> // Why Female Ale? // </h2>
+
+						<p>	Women enjoying beer is no new thing in Norfolk – the myths that women don't enjoy beer or that pubs are a space for men to escape find no place in one of the finest cities in the country to find a pint. But while we know beer is loved by men and women drinkers alike, at FEM.ALE we also want to celebrate women who are doing the brewing within the beer industry. 
+						
+						<br>
+						<br>
+
+						So, as part of the City of Ale Festival, which each year provides a showcase for the pubs and breweries of Norwich and their selection of craft beers, the Plasterers Arms is holding our first FEM.ALE event, a weekend dedicated to beer brewed by women that's enjoyed by everyone. dedicated to female brewed ales, featuring one from an Adnams brewster crafted specially for the event. 
+						<br>
+						<br>
+
+						Friday night will be kicking off the weekend with live music from local female musicians and DJs provided by Pony Up and tweeOFF! promoter Rosie Arnold. On Saturday we'll be looking into the industry itself, with a panel of four invited brewsters discussing their experiences as women in the industry and what they love about brewing beer. We'll also be holding a tasting of their beers so we can find out where their skills go! We're planning more ways to celebrate these great beers and the women who make them over the weekend which we'll be shouting about on the lead up to the City of Ale Festival 2014. We want everyone to feel welcome at FEM.ALE so stand by for more info and updates and we'll see you in May!
+						</p>
+				
+		
+					</td>
+			
+					<td class="events">
+
+						<table class="events">
+
+							<tr>
+							<td id="topleft"></td>
+							<td></td>
+							<th id="events">// EVENTS // </th>
+							</tr>
+					
+							<tr>
+								<td> Friday 23 May // </td>
+								<td> 10.30 am // </td>
+								<td>'BEER WITH BREAKFAST' TASTING //
+								<br> <a href="http://dealatis.org.uk/">Dea Latis</a> present a six course breakfast menu with a specially selected beer matched to each dish // 
+								<br> tickets are £20 and are available <a href="http://www.eventbrite.co.uk/e/city-of-ale-beers-with-breakfast-tasting-tickets-11344073429?aff=es2&rank=1"> here.</a>
+								</td>
+							</tr>
+					
+							<tr>
+								<td> </td>
+								<td> 8pm // </td>
+								<td> Celebrate the start of the City of Ale festival with brewster brews and live music from 8pm via Pony Up and tweeOFF! promoter Rosie Arnold and DJ's late into the evening.
+								</td>
+							</tr>
+					
+							<tr>
+								<td>Saturday 24 May // </td>
+								<td> 1pm // </td>
+								<td> Join us for a discussion panel from four successful brewsters and beer journalists about how they brew their beers, what ingredients they love brewing with and what it's like being a woman in the beer industry. </td>
+							</tr>
+					
+							<tr>
+								<td></td>
+								<td> 2pm // </td>
+								<td> We'll be trying out the speakers' beers in an informal tasting with a chance to ask them
+								 questions about their brewing process and style.</td>
+							</tr>
+					
+							<tr>
+								<td> </td>
+								<td> 6pm // </td>
+								<td> JoC's Norfolk Ales Meet The Brewer
+									<br> Norfolk's only brewster Jo Coubrough will be tasting through her range of delicious beers and answering any questions about her Fakenham based brewhouse. </td>
+							</tr>
+					
+							<tr>
+						 		<td> </td>
+								<td> 8pm // </td>
+								<td> Saturday night we'll be starting up the party again with DJ's, dancing and beers from the best brewsters
+								 across the country. </td>
+							</tr>
+							<tr>
+								<td id="bottomleft"> Sunday 25th May // </td>
+								<td> 5pm // </td>
+								<td id="bottomright"> To finish off the weekend we'll have live music from female fronted blues band in the afternoon and wind down the evening with some last tipples of ale to see out FEM.ALE with a toast to great beer from some great brewsters! </td>
+							</tr>
+						</table>
+					</td>
+
+			
+				</table>
+			
+		</div>
+		
+		<div>		
+		
+			<h2> Breweries </h2>
+
+			<p class="subhead">
+					There are many great breweries with women at the helm, and our beer list for the weekend will be finalised 
+					closer to the time, but we will definitely be featuring around twenty beers on tap from the following:	
+			</p>
+				
+			<table class="logos">
+			
+				<tr> 
+					<td> 
+						<a href="http://www.jocsnorfolkale.co.uk/"> 
+							<img width="100%" src="logos/joc.jpg" alt="JoC's Norfolk Ales"> 
+						</a> 
+					</td>
+				
+					<td> 
+						<a href="www.brewsters.co.uk/‎"> 
+							<img width="100%" src="logos/brewsters.jpg" alt="Brewster's Brewing"> 
+						</a> 
+					</td>
+				
+					<td> 
+						<a href="http://buntingfordbrewery.co.uk/">  
+							<img width="100%"  src="logos/buntingford.jpg" alt="Buntingford" >
+						</a> 
+					</td>
+				
+					<td> 
+						<a href="http://www.brentwoodbrewing.co.uk/"> 
+							<img width="100%"  src="logos/brentwood.jpg" alt=" Brentwood" >
+						</a> 
+					</td>
+				
+					<td> 
+						<a href="http://www.ilkleybrewery.co.uk/"> 
+							<img class="logo" src="logos/ilkley.jpg" alt=" Ilkley"> 
+						</a> 
+					</td>
+				
+					<td> 
+						<a href="https://westbeer.com/west"‎>  
+							<img class="logo" src="logos/west.jpg" alt="WEST"> 
+						</a> 
+					</td>
+				
+					<td> 
+						<a href="http://adnams.co.uk/‎">  
+							<img class="logo" src="logos/adnams.jpg" alt="Adnams"> 
+						</a> 
+					</td>
+				
+					<td> 
+						<a href="http://www.oldershawbrewery.com/">  
+							<img class="logo" src="logos/oldershaw.jpg" alt="Oldershaw Brewery"> 
+						</a>
+					</td> 
+				
+					<td> 
+						<a href="http://www.triplefff.com/our-beers">  
+							<img class="logo" src="logos/fff.jpg" alt="fff Brewery">
+						</a>
+					</td>
+				
+					<td> 
+						<a href="http://www.dancingduckbrewery.com/">  
+							<img class="logo" src="logos/dancingduck.jpg" alt="Dancing Duck Brewery"> 
+						</a>
+					</td>
+				 </tr>
+			 
+				 <tr>
+					<td> 
+						<a href="http://www.jocsnorfolkale.co.uk/"> 
+						JoC's
+						</a> 
+					</td>
+					<td> 
+						<a href="www.brewsters.co.uk/‎"> 
+						Brewster's 
+						</a> 
+					</td>
+					<td> 
+						<a href="http://buntingfordbrewery.co.uk/"> 
+						Buntingford 
+						</a> 
+					</td>
+					<td> 
+						<a href="http://www.brentwoodbrewing.co.uk/"> 
+						Brentwood 
+						</a> 
+					</td>
+					<td> 
+						<a href="http://www.ilkleybrewery.co.uk/"> 
+						Ilkley 
+						</a> 
+					</td>
+					<td> 
+						<a href="https://westbeer.com/west"‎> 
+						WEST 
+						</a> 
+					</td>
+					<td> 
+						<a href="http://adnams.co.uk/‎"> 
+						Adnams 
+						</a> 
+					</td>
+					<td> 
+						<a href="http://www.oldershawbrewery.com/"> 
+						Oldershaw
+						</a>
+					</td> 
+					<td> 
+						<a href="http://www.triplefff.com/our-beers"> 
+						fff
+						</a>
+					</td>
+					<td> 
+						<a href="http://www.dancingduckbrewery.com/"> 
+						Dancing Duck
+						</a>
+					</td>
+				</tr>
+			 
+				<tr>
+					<td> Jo is Norfolk's only brewster and produces a range of some of the finest traditional ales in the county.  She will be holding a tasting and meet the brewer event on Saturday 24th May at 6pm 
+					</td>
+					<td> Sara Barton is enthusiastically holding the beacon of female brewing, as well as producing fantastic and often experimental beers at Brewsters', she also organises the Venus project, a regular collaborative brew by women across the UK
+					</td>
+					<td>  Multi-award winning Hertfordshire brewery headed by brewster Catherine.
+					</td>
+					<td> Sophie De Ronde took over as head brewer at Brentwood in 2008 and has since expanded the repertoire of the brewery to new heights.  Sophie is also representative of the East of England region for SIBA. 
+					</td>
+					<td>  Ilkley has appointed two female brewers since 2012, both of whom have gone on to design and create several fantastic beers, including their Rhubarb Saison, brewed in conjunction with top beer writer Melissa Cole.
+					</td>
+					<td>  WEST
+					</td>
+					<td> Belinda, assistant brewery at Adnams is brewing us a special beer for the festival, a 6.3% Saison style cask ale, brewed with new hops Mandarina Bavaria. Make sure you get an exclusive first taste by coming to our <a href="http://www.eventbrite.co.uk/e/city-of-ale-beers-with-breakfast-tasting-tickets-11344073429?aff=es2&rank=1"> Beer With Breakfast </a> event on Friday morning. 
+					</td>
+					<td> Oldershaw 
+					</td> 
+					<td> fff 
+					</td>
+					<td> Dancing Duck 
+					</td>
+				</tr>	
+			</table>				 
+		</div>
+		<div>
+			<table class="findus">
+				<tr>
+					<th colspan="4">
+						// FIND US //
+					</th>
+				</tr>
+			
+				<tr>
+					<td id="socialmedia"> 
+						<table class="follow">
+							<tr>
+								<td> 
+									<a href="https://www.facebook.com/brewsterbeerfestival?fref=ts"> 
+										<img class="logo" src="logos/facebook.gif" alt="facebook"> 
+									</a>
+								</td>
+								<td> 
+									<a href="https://twitter.com/FemAleFestival"> 
+										<img class="logo" src="logos/twitter.gif" alt="twitter"> 
+									</a>
+								</td>
+								<td> 
+									<a href="mailto:ben@etheplasterersarms.com?Subject=Fem.ale%20Festival" target="_top">
+										<img class="logo" src="logos/email.gif" alt="email">
+									</a> 
+								</td>
+								<td> 
+									<a href="mailto:stevie.gedge@getinvolvedltd.com?Subject=Fem.ale%20Festival" target="_top"> 
+										<img class="logo" src="logos/press.gif" alt="press">
+									</a>
+								</td>	
+								<td> 
+									<a href="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=plasterers+arms+norwich&aq=&sll=52.640143,1.28685&sspn=0.120834,0.154495&vpsrc=0&ie=UTF8&hq=&hnear=The+Plasterers+Arms,+43+Cowgate,+Norwich+NR3+1SZ,+United+Kingdom&ll=52.636878,1.299112&spn=0.007553,0.009656&t=m&z=16&iwloc=A"> 
+										<img class="logo" src="logos/map.gif" alt="map">
+									</a> 
+								</td>
+							</tr>
+						
+							<tr>
+								<td> 
+									<a href="https://www.facebook.com/brewsterbeerfestival?fref=ts"> 
+										facebook 
+									</a>
+								</td>
+								
+								<td> 
+									<a href="https://twitter.com/FemAleFestival"> 
+										twitter 
+									</a>
+								</td>
+							
+								<td> 
+									<a href="mailto:ben@etheplasterersarms.com?Subject=Fem.ale%20Festival" target="_top"> 
+										email
+									</a>  
+								</td>
+							
+								<td> 
+									<a href="mailto:stevie.gedge@getinvolvedltd.com?Subject=Fem.ale%20Festival" target="_top"> 
+										press 
+									</a>
+								</td>	
+								<td> 
+									<a href="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=plasterers+arms+norwich&aq=&sll=52.640143,1.28685&sspn=0.120834,0.154495&vpsrc=0&ie=UTF8&hq=&hnear=The+Plasterers+Arms,+43+Cowgate,+Norwich+NR3+1SZ,+United+Kingdom&ll=52.636878,1.299112&spn=0.007553,0.009656&t=m&z=16&iwloc=A">directions 
+								</a>
+								</td>
+							</tr>
+						</table>
+					</td>
+					<td>
+					</td>
+					<td id="plasterers">
+						<a href="http://theplasterersarms.co.uk">
+							<img class="logo" src="logos/plasterers.jpg" alt="The Plasterers">
+						</a>
+					</td>	
+					<td id="address">
+						The <a href="http://theplasterersarms.co.uk"> Plasterers Arms </a> is a public house at 43 Cowgate, Magdalen Street, Norwich, NR3 1SZ.  The telephone number is 01603 387525.
+					</td>
+				</tr>
+			</table>
+		</div>
+	</body>
+	
+	
+<!-- centre image - can't be done with CSS in img tag?
+/* padding and margin automatically ADD to table, increasing width of page?!
+/* set margin as 10% and text completely spills out to left of its table cell.
+/* table-layout set as fixed; as soon as you set the width to anything (100% or 80%) the text runs out of the right most cells in the inner table - text stops wrapping.
+-->
+
+<!-- Find way of automatically cells being equal width across page, but expanding vertically to fit contents OR VICE VERSA
+do you need " marks around href= links?
+--->
+	
+</html>
+
