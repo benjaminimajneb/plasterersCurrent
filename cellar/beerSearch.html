@@ -1,0 +1,52 @@
+<script>
+function search(){
+	console.log($('#beersInput').val());
+	ajax={
+	}
+	var newInput=$('#beersInput').val();
+	console.log(newInput.charCodeAt(0));
+	console.log(newInput.charCodeAt(1));
+	console.log(newInput.charCodeAt(2));
+	console.log(newInput.charCodeAt(3));
+	console.log(newInput.charCodeAt(4));
+	console.log(typeof newInput);
+	$('#FUCK').html(newInput);
+	
+	newInput = newInput.split("\n");
+	//if we have column numbers here we can group entries into object (using Math.floor())
+	var numberInputCells=newInput.length;
+	for (x in newInput){
+		if(parseInt(newInput[x]).length<newInput[x].length || parseInt(newInput[x])==NaN) //keepit it's a string
+		//however need to check for £ signs.
+		
+		
+	}
+	console.log(newInput);	
+	
+	//newJson=$.parseJSON(newInput);
+	//console.log(newJson);
+}	
+</script>
+
+<html>
+	<head>
+		<script src="js/jquery-1.10.2.min.js"></script>
+	
+	</head>
+	
+	<body>
+	
+	<form id='bums'>
+		<textarea id='beersInput' name="message" rows="20" cols="130" placeholder="copy and paste text here.">
+</textarea>
+  <input type="submit" value='search RateBeer for info' onclick='search(); return false'>
+
+	</form>
+	
+	<button onclick='search()'>bums</button>
+	
+	<div id='FUCK'>
+	
+	</div>
+	</body>
+</html>

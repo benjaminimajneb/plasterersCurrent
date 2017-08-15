@@ -1,0 +1,98 @@
+.printMenuA3 {
+	max-width: 420mm;
+	max-height: 297mm; 	
+	min-width: 420mm;
+	min-height: 297mm; 
+	position:relative;
+	page-break-after:always;
+	clear:both;
+	float:left;
+	/* border: 1px solid red; */
+}
+
+.printHalf {
+	float:left;
+	width:50%;
+	
+}
+.printHalf h2 {
+	font-family:'Playfair Display', serif;
+	font-weight:700;
+	text-align:left;
+	letter-spacing:0.9px;
+	font-size:1.4em;
+	color:black;
+	margin-top:30px;
+	text-align:center;
+}
+
+.printHalf .minBody .minContent + .minImg {
+	float: left;
+	clear: both;
+}
+
+.printHalf .minBody .minImg {
+	float: left;
+	padding:60px;
+	padding-top:30px;
+	width:20%;
+}
+
+.printHalf .minBody .minImg img {
+	padding-bottom:60px;
+}
+
+.printHalf h3 {
+	margin-top:10px;
+}
+
+.minBody > h3 {
+	margin-top:40px;
+	text-align:center;
+	width:50%;
+	margin-left:25%;
+}
+
+.minBody > h2 {
+	margin-top:100px;
+}
+
+.printTitle h1{
+	padding:0px;
+	margin:0px;
+	font-family: 'Playfair Display', serif;
+	font-weight:900;
+	font-size:1.9em;
+	color:black;
+}
+
+.printTitle {
+	font-size:1.4em;
+	font-family: 'Playfair Display', serif;
+	margin-top:40px;
+	margin-bottom:0px;
+	border-bottom:1px solid black;
+	text-align:center;
+}
+
+.printHalf .minBody .minContent {
+	float:right;
+	width: 420px;
+	margin-right:70px;
+	margin-top:20px;
+}
+
+.printHalf .minBody {
+	margin-bottom:30px;
+}
+
+
+
+.minContent.popBox {
+	position:absolute;
+	bottom: 10px;
+	left: 5%;
+	width: 40%;
+	border: 1px solid black;
+	margin:0px;
+}

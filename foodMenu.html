@@ -39,7 +39,7 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
   var current = false;
 	$(document).ready(function(){
 		var rand = Math.round(Math.random()*10)%3;
-    $('#breakfastImg').attr('src','img/breakfast'+rand+'.gif');
+    $('#breakfastImg').attr('src','img/menu/breakfast'+rand+'.gif');
     $('.minImg, .minContent').hide();
     $('.minTitle').click(function(){
       var menu = $(event.target).parents('.minTitle').data('menu');
@@ -71,40 +71,53 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
     	<div class='minBody'>
         <!-- pizza pic -->
 				<div class="minImg" data-menu='pizza' id="pizzaPic">
-					<img src='img/pizza.gif' alt="A picture of a slice of pizza" id='pizzaImg'>
+					<img src='img/menu/pizza.gif' alt="A picture of a slice of pizza" id='pizzaImg'>
 				</div>
         <!-- pizza menu -->
         <div class="minContent" data-menu='pizza' id="foodMenu">
+
           <h2> EVERY DAY 5PM-10PM; WEEKENDS 2PM-11PM </h2>
           <h3> No Meat </h3>
           <p>
-            <b> Margherita </b> &emsp; [7.50]
-            <br> Tomato base, mozzarella, basil.
-            <br>
-            <br> <b> Zorba The Greek </b> &emsp; [9.00]
-            <br> Tomato base, spinach, roasted red peppers, black olives, drizzle of pesto, mozzarella, fresh tomatoes & crumbled feta.
-            <br>
-            <br> <b> The Priestess </b> &emsp; [9.00]
-            <br> Tomato base, spinach, roasted red peppers, courgettes, mozzarella, sun-dried tomatoes, a drizzle of pesto & crumbled feta.
+            <b> Margherita </b> &emsp; [7.00] </b>
+            <br> Tomato base with mozzarella and basil leaves. <i> Vegan version also available (see below). </i>
+            <br> 
+            <br> <b> Waldorf </b> &emsp; [8.50] </b>
+            <br> Tomato base with crumbled stilton, mozarella, sliced apple and topped with walnuts and an option of maple syrup. <i> Vegan version also available (see below). </i>
+            <br> 
+            <br> <b> Spinach & Ricotta </b> &emsp; [8.50] </b> 
+            <br> Tomato base with a sprinkle of grated mozzarella, ricotta & cream cheese, a layer of spinach, cherry tomatoes and black pepper.
           </p>
-          <h3> No Tomato </h3>
-          <p>
-              <b> Salmon  </b> &emsp; [9.50]
-            <br> Cream cheese base with smoked salmon, dill, lemon.
-            <br>
-            <br> <b> Reuben </b>  &emsp; [8.50]
-            <br> Plain butter base, corned beef, sauerkraut, gherkins, Swiss cheese, thousand island dressing.
-          </p>
+
+
           <h3> No Animals At All </h3>
           <p>
-            <b> Vegan Mafia </b>  &emsp; [8.50]	(vegan)
-            <br> Tomato base, roasted garlic, red onions, spinach, broccoli, roasted red peppers, black olives, mushrooms, courgettes, finished off with a balsamic vinegar dressing.
+            <br> <b> Mediterranean Vegetable </b>  &emsp; [9.00] </b>
+            <br> Hummus base with cherry tomatoes, black olives, courgettes, onion, fresh red peppers and finished with rocket & pomegranate molasses.
+            <br>
+            <br> <b> Moroccan Lentil </b>  &emsp; [8.50] </b>
+            <br> Moroccan spiced Lentils and raisin ragu on the base, finished of with toasted pine nuts, cashew cream and fresh coriander.
+            <br>
+            <br> <b> Vegan Sausage Party </b>  &emsp; [9.00] </b>
+            <br> BBQ sauce base with tofu sausage meat, seitan chorizo, seitan salami, coconut oil 'mozarella', red onion, peppers & parsley. 
+            <br>
+            <br> <b> Vegan Margherita </b>  &emsp; [7.50] </b>
+            <br> Tomato base with cocount oil 'mozzarella' and basil leaves. 
+            <br>
+            <br> <b> Vegan Waldorf </b>  &emsp; [8.50] </b>
+            <br> Tomato base with coconut oil 'stilton', sliced apple and topped with walnuts and an option of maple syrup. 
+          </p>	
 
-          </p>
-          <h3> No Care In The World </h3>
+          <h3> All The Meat! </h3>
           <p>
-            <b> Tuna </b>  &emsp; [9.00]
-            <br> Tomato base with tuna, mozzarella, red onions, capers, parsley, olive oil.
+            <b> American Hot </b> &emsp; [9.00]
+            <br> Tomato base with pepperoni, sausages, jalapeños & parsley.							
+            <br>
+            <br> <b> All Day Breakfast </b>  &emsp; [9.00]
+            <br> Tomato Base with sausage, bacon, black pudding, mushrooms and topped with a fried egg. Ketchup brown sauce or mayo available!
+            <br>
+            <br> <b> Hawaiian BBQ </b> &emsp; [8.50]
+            <br> BBQ base with pulled pork slowed cooked in pineapple juice, chunky pineapple, grated mozzarella finished with fresh coriander.
             <br>
             <br> <b> Jerk Chicken </b> &emsp; [8.50]
             <br> Tomato base, jerk marinated chicken, black beans, red pepper, pineapple, mozzarella. (served with bottle of hot sauce!)
@@ -112,17 +125,26 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
             <br> <b> Korean BBQ </b> &emsp; [8.50]
             <br> Special BBQ base, mozzarella, char sui pulled pork, spinach, spring onion and hoisin glaze.
             <br>
-            <br> <b> Thai Shrimp </b> &emsp; [9.50]
-            <br> Sweet chilli base, red onions, spinach, roasted red peppers, prawns, mozzarella. Finished off with a drizzle of sweet chilli sauce.
+            <br> <b> Moroccan Lamb </b> &emsp; [9.00]
+            <br> Moroccan spiced lamb and raisins base ragu finished with toasted pine nuts, natural yoghurt and fresh coriander. <i> Vegan version also available (see opposite). </i>
             <br>
-            <br> <b> The Daddy </b> &emsp; [9.00]
-            <br> Tomato base, chorizo, pepperoni, crumbled meatballs, mozzarella.
+            <br> <b> Sausage Party </b> &emsp; [8.50]
+            <br> BBQ base with chorizo, sausage, bacon, mozzarella and parsley. <i> Vegan version also available (see opposite). </i>
             <br>
-            <br> <b> Canadian Hot </b> &emsp; [9.00]
-            <br> Tomato base, pepperoni, bacon, jalapeños, mozzarella.
+            <br><b> Tuna </b>  &emsp; [9.00]
+            <br> Tomato base with tuna, mozzarella, red onions, capers, parsley, olive oil.
+            
+          </p>
+
+          <h3> No Tomato </h3>
+          <p>
+            <b>Sweet Chilli Prawn</b>  &emsp;  [9.00]                                                              
+            <br> Plain butter base with sweet chilli prawns, chorizo, pineapple, chopped chilies and mozzarella finished with fresh coriander.
             <br>
-            <br> <b> BBQ Eastwood </b> &emsp; [8.50]
-            <br> Tomato base with BBQ sauce, chicken, bacon, pineapple, roasted red peppers, mozzarella cheese, finished with a home made ranch dressing & coriander.
+            <br> <b> New York Deli </b>  &emsp; [8.50]
+            <br> Plain butter base, corned beef, sauerkraut, gherkins, Swiss cheese, thousand island dressing.
+            <br>
+            <br>
           </p>
         </div>
       </div>
@@ -136,7 +158,7 @@ src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
       <div class='minBody'>
         <!-- lunch pic -->
         <div class="minImg" data-menu='lunch' id="lunchPic">
-          <img src='img/wrap.gif' alt="A picture of one of many possible delicious lunches" id='lunchImg'>
+          <img src='img/menu/wrap.gif' alt="A picture of one of many possible delicious lunches" id='lunchImg'>
         </div>
 
         <!-- lunch menu -->
