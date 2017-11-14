@@ -1,333 +1,374 @@
 <html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>The Plasterers Arms - A Pub With Cocktails In</title>
-		<meta name="description" content="Website for the Plasterers Arms, which is a pub Norwich that has a quiz in it sometimes.">
-		<meta name="keywords" content="Plasterers,Arms,quiz,cocktails,Bloody Mary,Spirits,Liqueurs,Beer,Norwich,Pub,Pints,Great,Pizza,Real Ale,Craft Beer,Gin,Cocktails">
-		<meta name="author" content="Benjamin Andrew Hugo Thompson">
-		<meta charset="UTF-8">
 
-        <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>The Plasterers Arms - A Pub With Cocktails In</title>
+    <meta name="description" content="Website for the Plasterers Arms, which is a pub Norwich that has a quiz in it sometimes.">
+    <meta name="keywords" content="Plasterers,Arms,quiz,cocktails,Bloody Mary,Spirits,Liqueurs,Beer,Norwich,Pub,Pints,Great,Pizza,Real Ale,Craft Beer,Gin,Cocktails">
+    <meta name="author" content="Benjamin Andrew Hugo Thompson">
+    <meta charset="UTF-8">
 
-        <script src='../js/jquery-1.10.2.min.js'></script>
-		<script>
-		//GOOGLE ANALYTICS//
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-			ga('create', 'UA-12095952-2', 'auto');
-			ga('send', 'pageview');
-		</script>
-		
-<!-- Facebook Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
-n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
-document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
 
-fbq('init', '1742254716045600');
-fbq('track', "PageView");</script>
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Facebook Pixel Code -->
+    <script src='../js/jquery-1.10.2.min.js'></script>
+    <script src='../js/raphael.js'></script>
+    <script src='../js/spinner.js'></script>
+    <script>
+        //GOOGLE ANALYTICS//
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+                m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        ga('create', 'UA-12095952-2', 'auto');
+        ga('send', 'pageview');
+    </script>
+
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1742254716045600');
+        fbq('track', "PageView");</script>
+    <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
+        />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
 
 
 
-<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
 
-<style>
+    <style>
+        body {
+            background-color: #f9f9f9;
+            margin: 0px;
+            border: 0px;
+        }
 
-	body {
-		background-color:#f9f9f9;
-		margin:0px;
-		border:0px;
-	}
-	
-	a {
-		color:#005689;
-		font-weight:bold;
-	}
-	
-	#topBar{
-		z-index:100;
-		vertical-align:middle;
-		background-color:#234;
-		width:100%;
-		position:fixed;
-		top:0px;
-	}	
-	
-	#topBar a {
-		text-align:right;
-		font-family:avenir, serif;
-		font-size:1.3em;
-		margin-top:1px;
-		margin-right:5px;
-		border:0px;
-		float:right;
-		color:#fff;
-		padding:5px;
-		text-decoration:none;
-	}
-	#topBar img{
-		height:25px;
-		width:auto;
-		filter: invert(1);
-		-webkit-filter: invert(1);
-	}
-	
+        a {
+            color: #005689;
+            font-weight: bold;
+        }
 
-	
-	.minTitle{		
-		font-size:1.4em;
-		font-family: 'Playfair Display', serif;
-		margin:4%;
-		margin-bottom:0px;
-		border-bottom:1px solid black;
-		text-align:center;
-	}
-	.minTitle h1{
-		padding:0px;
-		margin:0px;
-		font-family: 'Playfair Display', serif;
-		font-weight:900;
-		font-size:1.9em;
-		color:black;
-	}
-	
-	
-	.minBody{
-		width:100%;
-		margin:0px;
-		padding:0px;
-		text-align:center;
-	}
-	.minContent{
-	/*	background-color:gray; */
-		margin:5%;
-		margin-left:1%;
-		margin-right:16%;
-		width:46%;
-		padding:0px;
-		border:0px;	
-		float:right;
-		text-align:left;
-	}
-	.minBody p{
-		color:black;
-		font-family: 'Avenir', serif;
-		font-weight:100;
-		font-size:0.9em;
-		text-align:left;
-		margin:0px;
-		padding:0px;
-		letter-spacing:normal;
-	}
-	
-	.minBody h2 {
-		font-family:'Playfair Display', serif;		
-		font-weight:700;
-		text-align:left;
-		letter-spacing:0.9px;
-		font-size:1.4em;
-		color:black;
-		margin-top:0px;
-	}
-	
-	.minBody h3 {
-		font-family:'Playfair Display', serif;
-		font-weight:700;
-		text-align:left;
-		letter-spacing:1px;
-		margin-top:44px;
-		border-bottom:1px solid black;
-		margin-bottom:5px;
-		font-size:1.1em;
-		color:black;
-	}
-	
-	.minImg{
-		padding:4%;
-		padding-left:10%;
-		float:left;
-		width:22%;
-		margin:0px;
-		border:0px;
-	}
-	.minImg img{
-		width:100%;
-		height:auto;
-	}
-    #background {
-        background-image: url(../img/quizPoster.jpg);
-        position:fixed;
-        z-index:-1;
-    }
+        #topBar {
+            z-index: 100;
+            vertical-align: middle;
+            background-color: #234;
+            width: 100%;
+            position: fixed;
+            top: 0px;
+        }
 
-    @media screen and (orientation: portrait)  {
+        #topBar a {
+            text-align: right;
+            font-family: avenir, serif;
+            font-size: 1.3em;
+            margin-top: 1px;
+            margin-right: 5px;
+            border: 0px;
+            float: right;
+            color: #fff;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+        #topBar img {
+            height: 25px;
+            width: auto;
+            filter: invert(1);
+            -webkit-filter: invert(1);
+        }
+
+
+
+        .minTitle {
+            font-size: 1.4em;
+            font-family: 'Playfair Display', serif;
+            margin: 4%;
+            margin-bottom: 0px;
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+
+        .minTitle h1 {
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.9em;
+            color: black;
+        }
+
+
+        .minBody {
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        .minContent {
+            /*	background-color:gray; */
+            margin: 5%;
+            margin-left: 1%;
+            margin-right: 16%;
+            width: 46%;
+            padding: 0px;
+            border: 0px;
+            float: right;
+            text-align: left;
+        }
+
+        .minBody p {
+            color: black;
+            font-family: 'Avenir', serif;
+            font-weight: 100;
+            font-size: 0.9em;
+            text-align: left;
+            margin: 0px;
+            padding: 0px;
+            letter-spacing: normal;
+        }
+
+        .minBody h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: left;
+            letter-spacing: 0.9px;
+            font-size: 1.4em;
+            color: black;
+            margin-top: 0px;
+        }
+
+        .minBody h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: left;
+            letter-spacing: 1px;
+            margin-top: 44px;
+            border-bottom: 1px solid black;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            color: black;
+        }
+
+        .minImg {
+            padding: 4%;
+            padding-left: 10%;
+            float: left;
+            width: 22%;
+            margin: 0px;
+            border: 0px;
+        }
+
+        .minImg img {
+            width: 100%;
+            height: auto;
+        }
+
         #background {
-            height:100%;
-            width:100%;
-            background-image: url(../img/pubQuizPortrait.jpg);
-            background-size:cover;
+            background-image: url(../img/quizPoster.jpg);
+            position: fixed;
+            z-index: -1;
         }
-        #quizTitle img {
-            display:inline-block;
-            height:160px;
-            margin-right:20px;
-            vertical-align:middle;
-            filter: invert(100%);
+
+        @media screen and (orientation: portrait) {
+            #background {
+                height: 100%;
+                width: 100%;
+                background-image: url(../img/pubQuizPortrait.jpg);
+                background-size: cover;
+            }
+            #quizTitle img {
+                display: inline-block;
+                height: 160px;
+                margin-right: 20px;
+                vertical-align: middle;
+                filter: invert(100%);
+            }
+            #quizTitle h1 {
+                display: inline-block;
+                text-align: left;
+                margin: 0px;
+                vertical-align: middle;
+            }
+            #quizTitle {
+                text-align: center;
+                color: white;
+                width: 100%;
+                padding-top: 10%;
+                vertical-align: top;
+            }
+            .quizBackingBox {
+                width: 100%;
+            }
         }
+
+        @media screen and (orientation: landscape) {
+            #background {
+                width: 100%;
+                height: 100%;
+                background-image: url(../img/pubQuizLandscape.jpg);
+                background-size: cover;
+            }
+
+            #quizTitle {
+                text-align: center;
+                color: white;
+                width: 100%;
+                padding-top: 10%;
+                vertical-align: top;
+            }
+
+            #quizTitle img {
+                display: inline-block;
+                height: 160px;
+                margin-right: 20px;
+                vertical-align: middle;
+                filter: invert(100%);
+
+            }
+
+            #quizTitle h1 {
+                display: inline-block;
+                text-align: left;
+                margin: 0px;
+                vertical-align: middle;
+            }
+        }
+
         #quizTitle h1 {
-            display:inline-block;
-            text-align:left;
-            margin:0px;
-            vertical-align:middle;
-        }
-        #quizTitle {
-            text-align:center;
+            font-weight: 700;
             color: white;
-            width:100%;
-            padding-top:10%;
-            vertical-align:top;
+
         }
+
+        #quizDetails {
+            text-align: center;
+            margin-top: 100px;
+            color: white;
+
+        }
+
+        #quizDetails h2 {
+            font-weight: 800;
+            color: white;
+
+        }
+
+        #quizDetails h3 {
+            font-weight: 200;
+            font-style: italic;
+            color: white;
+
+        }
+
+
+        #website {
+            position: relative;
+            padding-top: 30px;
+            font-family: Raleway;
+            color: white;
+        }
+
         .quizBackingBox {
-            width:100%;
-        }
-    }
-
-    @media screen and (orientation: landscape)  {
-        #background {
-            width:100%;
-            height:100%;
-            background-image: url(../img/pubQuizLandscape.jpg);
-            background-size:cover;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: inline-block;
+            padding: 15px;
         }
 
-        #quizTitle {
-            text-align:center;
-            color: white;
-            width:100%;
-            padding-top:10%;
-            vertical-align:top;
+        #spinner {
+            width: 50px;
+            height: 50px;
+            position: fixed;
+            bottom: 0px;
+            right: 0px;
         }
-
-        #quizTitle img {
-            display:inline-block;
-            height:160px;
-            margin-right:20px;
-            vertical-align:middle;
-            filter: invert(100%);
-
-        }
-
-        #quizTitle h1 {
-            display:inline-block;
-            text-align:left;
-            margin:0px;
-            vertical-align:middle;
-        }
-    }
-
-    #quizTitle h1 {
-        font-weight:700;
-        color:white;
-
-    }  
-    #quizDetails {
-        text-align:center;
-        margin-top:100px;  
-        color:white;
-          
-    } 
-    #quizDetails h2 {
-        font-weight:800;
-        color:white;
-
-    }
-    #quizDetails h3 {
-        font-weight: 200;
-        font-style: italic;
-        color:white;
-
-    }
-
-
-	#website {
-		position: relative;	
-		padding-top: 30px;	
-        font-family: Raleway;
-        color:white;
-    }
- 
-    .quizBackingBox {
-        background-color:rgba(0,0,0,0.7);
-        display:inline-block;
-        padding:15px;
-    }
-
-</style>
+    </style>
 </head>
-	<body>
-		<div id='topBar'>
-			<a href="index.html"> <img src='../img/pint.gif' /></a>
-			<a href="index.html"> THE PLASTERERS ARMS </a>
-		</div>
-	    <div id='website'>
 
-            <div id='background'>
+<body>
+    <div id='topBar'>
+        <a href="index.html">
+            <img src='../img/pint.gif' />
+        </a>
+        <a href="index.html"> THE PLASTERERS ARMS </a>
+    </div>
+    <div id='website'>
 
-            </div>
-
-            <div id='quizTitle'>
-                <div class='quizBackingBox'>
-                    <img src='../img/pint.gif' />
-                    <h1>
-                        THE <br>
-                        PLASTERERS  <br>
-                        ARMS <br>
-                        QUIZ.
-                    </h1>
-                </div>
-            </div>
-            
-            <div id='quizDetails'>
-                <div class='quizBackingBox'>
-                    <h2> EVERY MONDAY AT 8PM </h2>
-                    <h3>
-                        PRIZES BEYOND IMAGINATION!
-                        <br>
-                        MAX 6 PLAYERS PER TEAM 
-                        <br>
-                        £1 ENTRY PER PERSON
-                        ALL MONEY GOES TO LOCAL CHARITY <a id='nansaLink' href='http://www.nansa.org.uk/'>NANSA</a> 
-                        <br>
-                        <br>
-                        click to go to the Facebook group &rarr;
-                    </h3>
-            </div>
-            </div>
-
+        <div id='background'>
 
         </div>
-    </body>
-    <script>
+
+        <div id='quizTitle'>
+            <div class='quizBackingBox'>
+                <img src='../img/pint.gif' />
+                <h1>
+                    THE
+                    <br> PLASTERERS
+                    <br> ARMS
+                    <br> QUIZ.
+                </h1>
+            </div>
+        </div>
+
+        <div id='quizDetails'>
+            <div class='quizBackingBox'>
+                <h2> EVERY MONDAY AT 8PM </h2>
+                <h3>
+                    PRIZES BEYOND IMAGINATION!
+                    <br> MAX 6 PLAYERS PER TEAM
+                    <br> £1 ENTRY PER PERSON ALL MONEY GOES TO LOCAL CHARITY
+                    <a id='nansaLink' href='http://www.nansa.org.uk/'>NANSA</a>
+                    <br>
+                    <br> click to go to the Facebook group &rarr;
+                </h3>
+            </div>
+        </div>
+        <a href='/quiz/wheelOfMisfortune.html' class='spinner'>
+            <div class='spinner' id='spinner'>
+            </div>
+        </a>
+
+    </div>
+</body>
+<script>
         // for making whole page a click through to the facebook group:
-        $('#website').click(function(e) {
+        $('#website').click(function (e) {
             var url = '';
             const target = $(e.target);
-            if (target.attr('id') == 'nansaLink') {
+            console.log(target);
+            if (target.attr('id') == 'nansaLink' || target.hasClass('spinner') || target.parents('.spinner').length > 0) {
                 return true;
             } else {
                 url = 'https://www.facebook.com/groups/1540540399324838'
             }
-            window.location = url;
+            //window.location = url;
             return false;
         });
-    </script>
+        /* WHEEL OPTIONS */
+        var options = [];
+        for (var x = 1; x < 17; x++) {
+            options.push("");
+        }
+
+        $(document).ready(function () {
+            drawWheel(spinner, options, false);
+            spinWheelConstantly();
+        });
+</script>
+
 </html>
