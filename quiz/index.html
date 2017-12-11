@@ -346,29 +346,28 @@
     </div>
 </body>
 <script>
-        // for making whole page a click through to the facebook group:
-        $('#website').click(function (e) {
-            var url = '';
-            const target = $(e.target);
-            console.log(target);
-            if (target.attr('id') == 'nansaLink' || target.hasClass('spinner') || target.parents('.spinner').length > 0) {
-                return true;
-            } else {
-                url = 'https://www.facebook.com/groups/1540540399324838'
-            }
-            //window.location = url;
-            return false;
-        });
-        /* WHEEL OPTIONS */
-        var options = [];
-        for (var x = 1; x < 17; x++) {
-            options.push("");
+    // for making whole page a click through to the facebook group:
+    $('#website').click(function (e) {
+        var url = '';
+        var target = $(e.target);
+        if (target.attr('id') == 'nansaLink' || target.hasClass('spinner') || target.parents('.spinner').length > 0) {
+            return true;
+        } else {
+            url = 'https://www.facebook.com/groups/1540540399324838'
         }
+        window.location = url;
+        return false;
+    });
+    /* WHEEL OPTIONS */
+    var options = [];
+    for (var x = 1; x < 17; x++) {
+        options.push("");
+    }
 
-        $(document).ready(function () {
-            drawWheel(spinner, options, false);
-            spinWheelConstantly();
-        });
+    $(document).ready(function () {
+        drawWheel(spinner, options, false);
+        spinWheelConstantly();
+    });
 </script>
 
 </html>
