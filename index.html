@@ -2,15 +2,16 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>The Plasterers Arms - A Pub With Beer And Pizza In</title>
-    <link rel="stylesheet" type="text/css" href="/css/plaster1.css">
-    <script src="/js/jquery-1.10.2.min.js"></script>
-    <script src="/js/plaster.js"></script>
-    <meta name="description" content="Website for the Plasterers Arms, a beer pub, distillery and pizza place in Norwich">
-    <meta name="keywords" content="Plasterers,Arms,Beer,Norwich,Pub,Pints,Great,Pizza,Real Ale,Craft Beer,Gin,Distillery,Cocktails">
-    <meta name="author" content="Daniel J. Harvey">
+    <title>The Plasterers Arms - A Pub With Cocktails In</title>
+    <meta name="description" content="Website for the Plasterers Arms, which is a pub Norwich that has a quiz in it sometimes.">
+    <meta name="keywords" content="Plasterers,Arms,quiz,cocktails,Bloody Mary,Spirits,Liqueurs,Beer,Norwich,Pub,Pints,Great,Pizza,Real Ale,Craft Beer,Gin,Cocktails">
+    <meta name="author" content="Benjamin Andrew Hugo Thompson">
     <meta charset="UTF-8">
 
+    <link href="https://fonts.googleapis.com/css?family=Oswald:300,400,700|Playfair+Display:400,700,900" rel="stylesheet">
+
+    <script src='../js/jquery-1.10.2.min.js'></script>
+    <script src='../js/raphael.js'></script>
     <script>
         //GOOGLE ANALYTICS//
         (function (i, s, o, g, r, a, m) {
@@ -23,131 +24,439 @@
         ga('send', 'pageview');
     </script>
 
+    <!-- Facebook Pixel Code -->
+    <script>
+        !function (f, b, e, v, n, t, s) {
+            if (f.fbq) return; n = f.fbq = function () {
+                n.callMethod ?
+                    n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+            }; if (!f._fbq) f._fbq = n;
+            n.push = n; n.loaded = !0; n.version = '2.0'; n.queue = []; t = b.createElement(e); t.async = !0;
+            t.src = v; s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s)
+        }(window,
+            document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+        fbq('init', '1742254716045600');
+        fbq('track', "PageView");</script>
+    <noscript>
+        <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1742254716045600&ev=PageView&noscript=1"
+        />
+    </noscript>
+    <!-- End Facebook Pixel Code -->
+
+
+
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+
+    <style>
+        body {
+            background-color: #f9f9f9;
+            margin: 0px;
+            border: 0px;
+        }
+
+        a {
+            color: #005689;
+            font-weight: bold;
+        }
+
+        #topBar {
+            z-index: 100;
+            vertical-align: middle;
+            background-color: #234;
+            width: 100%;
+            position: fixed;
+            top: 0px;
+        }
+
+        #topBar a {
+            text-align: right;
+            font-family: avenir, serif;
+            font-size: 1.3em;
+            margin-top: 1px;
+            margin-right: 5px;
+            border: 0px;
+            float: right;
+            color: #fff;
+            padding: 5px;
+            text-decoration: none;
+        }
+
+
+
+
+
+        .minTitle {
+            font-size: 1.4em;
+            font-family: 'Playfair Display', serif;
+            margin: 4%;
+            margin-bottom: 0px;
+            border-bottom: 1px solid black;
+            text-align: center;
+        }
+
+        .minTitle h1 {
+            padding: 0px;
+            margin: 0px;
+            font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: 1.9em;
+            color: black;
+        }
+
+
+        .minBody {
+            width: 100%;
+            margin: 0px;
+            padding: 0px;
+            text-align: center;
+        }
+
+        .minContent {
+            /*	background-color:gray; */
+            margin: 5%;
+            margin-left: 1%;
+            margin-right: 16%;
+            width: 46%;
+            padding: 0px;
+            border: 0px;
+            float: right;
+            text-align: left;
+        }
+
+        .minBody p {
+            color: black;
+            font-family: 'Avenir', serif;
+            font-weight: 100;
+            font-size: 0.9em;
+            text-align: left;
+            margin: 0px;
+            padding: 0px;
+            letter-spacing: normal;
+        }
+
+        .minBody h2 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: left;
+            letter-spacing: 0.9px;
+            font-size: 1.4em;
+            color: black;
+            margin-top: 0px;
+        }
+
+        .minBody h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            text-align: left;
+            letter-spacing: 1px;
+            margin-top: 44px;
+            border-bottom: 1px solid black;
+            margin-bottom: 5px;
+            font-size: 1.1em;
+            color: black;
+        }
+
+        .minImg {
+            padding: 4%;
+            padding-left: 10%;
+            float: left;
+            width: 22%;
+            margin: 0px;
+            border: 0px;
+        }
+
+        .minImg img {
+            width: 100%;
+            height: auto;
+        }
+
+        #background {
+            width: 100%;
+            height: 100%;
+            background-image: url(./img/christmastree.gif);
+            background-size: cover;
+            position: fixed;
+            z-index: -1;
+        }
+
+
+
+        #website {
+            position: relative;
+            font-family: Raleway;
+            color: white;
+        }
+
+        .leftBar {
+            top: 10px;
+            left: 10px;
+            width: 100%;
+            height: auto;
+            display: block;
+            float: left;
+            overflow: auto;
+            padding: 10px;
+        }
+
+        .leftBar .mainDetails {
+            position: fixed;
+        }
+
+        .leftBar .logoContainer {
+            height: 55px;
+            width: 55px;
+            background-color: black;
+            text-align: middle;
+            padding: 10px;
+            margin: 0px;
+            display: flex;
+            justify-content: center;
+            cursor: pointer;
+
+        }
+
+        .leftBar .logoImg {
+            height: 55px;
+            width: auto;
+            filter: invert(1);
+            -webkit-filter: invert(1);
+            margin: 0px;
+        }
+
+        .leftBar h1 {
+            text-align: left;
+            font-family: raleway;
+            font-weight: 800;
+            font-size: 2.5em;
+            background-color: black;
+            margin: 0px;
+            padding-left: 10px;
+            padding-right: 10px;
+            cursor: pointer;
+        }
+
+        .leftBar h2 {
+            text-align: left;
+            font-family: raleway;
+            font-weight: 800;
+            font-size: 2.5em;
+            background-color: black;
+            margin: 0px;
+            padding-left: 10px;
+            padding-right: 10px;
+            color: rgb(138, 138, 138);
+        }
+
+        .listings {
+            text-align: right;
+            font-family: raleway;
+            font-weight: 800;
+            font-size: 2.5em;
+            width: 100%;
+            overflow-y: auto;
+            display: block;
+        }
+
+        .hiddenDetails {
+            visibility: hidden;
+        }
+
+        .listings div {
+            display: inline-block;
+        }
+
+        .date {
+            color: rgb(72, 197, 255);
+        }
+
+        .time {
+            color: white;
+
+        }
+
+        .details {
+            color: rgb(138, 138, 138);
+
+            font-weight: 400;
+        }
+
+        .clear {
+            display: block;
+            width: 100%;
+            height: 10px;
+        }
+
+        .listItem {
+            background-color: black;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
 </head>
 
 <body>
-    <div id="website">
-        <div id="sidebar">
-            <!-- <div id='sidebarBack'></div> -->
+    <div id='background'> </div>
 
-            <!-- <div id='sidebarFront'> -->
-            <img id="logo" src="/img/logo.png">
-            <div id="content">
-                <h1 class="tiny">THE PLASTERERS ARMS</h1>
-                <h2>WE ARE A PUB.</h2>
-                <p>WE ARE OPEN AT THESE TIMES:
-                    <br> SUN - THURS 12 TO 12
-                    <br> FRI - SAT 12 TO 1AM</p>
+    <div id='website'>
 
-                <p>BLINDLY FOLLOW US:
-                    <br>
-                    <a href="http://twitter.com/theplasterers">TWITTER</a>
-                    <br>
-                    <a href="http://facebook.com/theplasterersnorwich">FACEBOOK</a>
-                    <br>
-                    <a href="http://instagram.com/theplasterers">INSTAGRAM</a>
-                    <br>
-                    <a href="http://theplasterersarms.blogspot.co.uk/">BLOG</a>
-                    <br>
-                    <a href="http://linkedin.com/asif">LINKED IN</a>
-                    <br>
-                    <a href="http://friendsreunited.com/doesthiswebsitestillevenexist">FRIENDS REUNITED</a>
-                </p>
 
-                <p>WE HAVE 15 CASK TAPS FOR REAL ALE &amp; CIDER AND 9 KEG LINES FOR CRAFT LAGER &amp; ALE. AS YOU KNOW, VARIETY
-                    IS THE SPICE OF LIFE, SO WITH THE EXCEPTION OF A COUPLE OF HOUSE BEERS THE LINE-UP IS CONSTANTLY CHANGING.
-                    WE ALSO OFTEN HAVE BEERS BREWED ESPECIALLY FOR US, AN EVER-CHANGING SELECTION OF WEIRD AND WONDERFUL
-                    BOTTLED BEER FROM ALL OVER THE WORLD, AND MORE FINE LIQUORS THAN YOU CAN SHAKE A FIST AT. CHECK OUT OUR
-                    MENU PAGE FOR MORE INFO.</p>
-
-                <p>CAMRA MEMBERS GET 10% OFF ALL CASK ALES AND ON MONDAY AFTERNOONS EVERYONE GETS 10% OFF ALES. BECAUSE WE'RE
-                    NICE LIKE THAT.
-                </p>
-
-                <p>IF YOU WANT TO RECREATE THE JOY OF THE PLASTERERS IN YOUR OWN HOME, YOU CAN TAKE AWAY ANY BOTTLES OR DRAFT
-                    BEER (IN 2 OR 4 LITRE GLASS GROWLERS) AT 10% OFF NORMAL PRICE.</p>
-
-                <p>THE SPORTY AMONGST YOU MAY ENJOY OUR BAR BILLIARDS TABLE OR COLLECTION OF BOARD GAMES AND WE PLAY MOST SPORTING
-                    MATCHES ON THE TV (SKY AND BT). WE ALSO OFTEN HAVE LIVE MUSIC. CHECK THE FACEBOOK PAGE FOR A FULL BREAKDOWN
-                    OF FORTHCOMING EVENTS.</p>
-
-                <p>CHILDREN ARE WELCOME IN THE PUB. DRUNK KIDS ARE REALLY VERY ANNOYING THOUGH, SO WE PROBABLY WON'T SERVE THEM
-                    BOOZE. SAME APPLIES TO DOGS.</p>
-
-                <p>WANT TO RESERVE A TABLE? ASK US A QUESTION? FEELING CHATTY? OUR NUMBER IS 01603 440992</p>
+        <div class='leftBar'>
+            <div class='mainDetails'>
+                <div class='logoContainer'>
+                    <img class='logoImg' src='../img/pint.gif' />
+                </div>
+                <h1> THE PLASTERERS ARMS</h1>
+                <h2> XMAS OPENING HOURS/EVENTS</h2>
             </div>
-            <!-- </div> -->
+            <div class='hiddenDetails'>
+                <div class='logoContainer'>
+                    <img class='logoImg' src='../img/pint.gif' />
+                </div>
+                <h1> THE PLASTERERS ARMS</h1>
+                <h2> XMAS OPENING HOURS ETC</h2>
+            </div>
         </div>
-        <div id="linkbar">
-            <!-- <div id='linkBack'></div> -->
-            <!-- <div id='linkFront'> -->
-            <h3>
-                <a href="http://theplasterersarms.blogspot.co.uk/">BLOG</a>
-                <a href="/drinksMenu.html">DRINKS</a>
-                <a href="/foodMenu.html">FOOD </a>
-                <a href="/philosophy.html">PHILOSOPHY</a>
-                <a href="https://maps.google.co.uk/maps?f=q&source=s_q&hl=en&geocode=&q=plasterers+arms+norwich&aq=&sll=52.640143,1.28685&sspn=0.120834,0.154495&vpsrc=0&ie=UTF8&hq=&hnear=The+Plasterers+Arms,+43+Cowgate,+Norwich+NR3+1SZ,+United+Kingdom&ll=52.636878,1.299112&spn=0.007553,0.009656&t=m&z=16&iwloc=A">DIRECTIONS</a>
-                <a href="http://fem.ale-festival.co.uk">FEM.ALE FESTIVAL</a>
-                <a href="/quiz">QUIZ</a>
-                <!-- <a 
-href="/fridayIsTreatDay/index.php">FRIDAY TREATS</a> -->
-            </h3>
-            <!-- </div> -->
-        </div>
-        <!-- id="linkbar" -->
-        <!-- TO BE COMPLETED --
-			<div id="menu" onmouseout='hideMenu()'>
-				<div id="menuPopUpConnecter">
-				</div>
-				<div id='menuPopUp'>
-					<div class="menuImageContainer" style="visibility:visible" id="bottles">
-					</div>
-					
-					<div class="menuImageContainer" id="winesCocktails">
-					</div>
-					
-					<div class="menuImageContainer" id="gins">
-					</div>
-					
-					<div class="menuImageContainer" id="spirits">
-					</div>
 
-					<div id="menuPages">
-						<a href="" class="bottles" onclick="changeMenuTo(event)">BOTTLED BEERS</a>
-						<a href="" class="gins" onclick="changeMenuTo(event)">GINS</a>
-						<a href="" class="spirits" onclick="changeMenuTo(event)">SPIRITS</a>
-						<a href="" class="winesCocktails" onclick="changeMenuTo(event)">WINE & COCKTAILS</a>
-						</div>
-					</div>
-				</div>
-			</div> 
--->
+
+
+
+
+
+
+
+
+
+
+        <div class='listings'>
+            <a href='https://www.facebook.com/events/1901687763492350/'>
+                <div class='listItem' id='1513555200000'>
+                    <div class='date'> 18TH DEC</div>
+                    <div class='time'> 8:00PM</div>
+                    <div class='details'>BIG FAT QUIZ OF THE YEAR</div>
+                </div>
+            </a>
+            <div class='clear'></div>
+            <a href='https://www.facebook.com/events/150015628955417/'>
+                <div class='listItem' id='1513728000000'>
+                    <div class='date'> 20TH DEC</div>
+                    <div class='time'> 7:30PM</div>
+                    <div class='details'>PORT AND CHEESE TASTING</div>
+
+                </div>
+            </a>
+            <div class='clear'></div>
+            <a href='https://www.facebook.com/events/134262373942361/'>
+                <div class='listItem' id='1513900800000'>
+                    <div class='date'> 22ND DEC</div>
+                    <div class='time'> 7:30PM</div>
+                    <div class='details'>THREE BLIND MICE BREWERY TAKE-OVER</div>
+
+                </div>
+            </a>
+
+            <div class='clear'></div>
+
+            <a href='https://www.facebook.com/events/158048744925548/'>
+                <div class='listItem' id='1513987200000'>
+                    <div class='date'> 23RD DEC</div>
+                    <div class='time'> 8:00PM</div>
+                    <div class='details'>CHRISTMAS CAROLS</div>
+                </div>
+
+                <div class='clear'></div>
+                <div class='clear'></div>
+
+                <div class='listItem' id='1514073600000'>
+                    <div class='date'> XMAS EVE </div>
+                    <div class='time'>10AM - 1AM </div>
+                </div>
+
+                <div class='clear'></div>
+
+                <div class='listItem' id='1514160000000'>
+                    <div class='date'> XMAS DAY </div>
+                    <div class='time'>MIDDAY - 5PM</div>
+                    <div class='details'> NO FOOD SERVICE, SOZ </div>
+                </div>
+
+                <div class='clear'></div>
+
+                <div class='listItem' id='1514246400000'>
+                    <div class='date'> BOXING DAY </div>
+                    <div class='time'>MIDDAY - 6PM</div>
+                    <div class='details'> REDUCED FOOD MENU </div>
+                </div>
+
+                <div class='clear'></div>
+
+                <div class='listItem'>
+                    <div class='date'> 27TH - 30TH </div>
+                    <div class='time'> NORMAL SERVICE RESUMES </div>
+                </div>
+
+                <div class='clear'></div>
+                <a href='https://www.facebook.com/events/719677651553153/'>
+                    <div class='listItem' id='1514678400000'>
+                        <div class='date'> NYE </div>
+                        <div class='time'> MIDDAY - WELL LATE</div>
+                        <div class='details'> FREE ENTRY. LONDON BREWERIES &amp; WEIRD PANCACKES DJS</div>
+                    </div>
+                </a>
+                <div class='clear'></div>
+
+                <div class='listItem'>
+                    <div class='date'> NEW YEARS DAY </div>
+                    <div class='time'> 5PM - 10PM</div>
+                    <div class='details'> REDUCED FOOD MENU </div>
+                </div>
+
+                <div class='clear'></div>
+
+                <div class='listItem'>
+                    <div class='date'> TUES 9TH JAN </div>
+                    <div class='time'> CLOSED, SOZ </div>
+                    <div class='details'></div>
+                </div>
+
+                <div class='clear'></div>
+
+        </div>
+
     </div>
-    <!-- id='website' -->
-    <script>
-        function changeMenuTo(e) {
-            var page = $(e.target).attr('id');
-            $('.menuPopUp').children().each(function () {
-                if ($(this).attr('id') == page) {
-                    $(this).css({ 'visibility': 'visible' })
-                } else {
-                    $(this).css({ 'visibility': 'hidden' })
-                }
-            });
-        }
-
-        function hideMenu() {
-            $('#menu').css({ 'visibility': 'hidden' });
-        }
-        function showMenu() {
-            $('#menu').css({ 'visibility': 'visible' });
-            for (var i; i < 5; i++) {
-                //add in images.
-            }
-        }
-
-
-    </script>
 </body>
+<script>
+
+    //for hiding inappropriate content
+    function hideShit() {
+        var date = new Date().valueOf();
+        $('.listItem').each(function () {
+            id = parseInt($(this).attr('id'));
+            if (id && id < date) $(this).hide();
+        })
+
+
+        console.log(date);
+
+    }
+
+    // for making whole page a click through to the facebook group:
+    $('#website').click(function (e) {
+        var url = '';
+        var target = $(e.target);
+        if (target.hasClass('realLink') || target.parents('a').length > 0) {
+            return true;
+        } else {
+            url = './'
+        }
+        window.location = url;
+        return false;
+    });
+
+
+    hideShit();
+</script>
 
 </html>
