@@ -147,5 +147,24 @@
         font-weight:100;
     }
 
+    @media screen and (orientation: portrait) {
+        .leftCol, .rightCol{
+            clear:both;
+            display:block;
+            height:auto;
+            width: 100%;
+            padding:0px;
+            margin:0px;
+        }
+        .menuTableWrapper {
+            display:table;
+            vertical-align:top;
+        }
+        .sectionTitle {
+            display:table-cell;
+            vertical-align:top;
+        }
+
+    }
 
     

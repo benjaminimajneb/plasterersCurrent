@@ -2,9 +2,9 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>The Plasterers Arms - A Pub With Cocktails In</title>
+    <title>The Plasterers Arms - A Pub With Pizzas In</title>
     <meta name="description" content="Food Served at the Plasterers Arms, a beer pub in Norwich">
-    <meta name="keywords" content="Plasterers,Arms,cocktails,Bloody Mary,Spirits,Liqueurs,Beer,Norwich,Pub,Pints,Great,Pizza,Real Ale,Craft Beer,Gin,Cocktails">
+    <meta name="keywords" content="Plasterers,Arms,breakfast,food,menu,Bloody Mary,fry-up,full,english,Pizza,Norwich,Pub">
     <meta name="author" content="Benjamin Andrew Hugo Thompson">
     <meta charset="UTF-8">
 
@@ -42,27 +42,6 @@
         />
     </noscript>
     <!-- End Facebook Pixel Code -->
-    <script src='js/jquery-1.10.2.min.js'></script>
-    <script>
-        var current = false;
-        $(document).ready(function () {
-            var rand = Math.round(Math.random() * 10) % 3;
-            $('#breakfastImg').attr('src', 'img/menu/breakfast' + rand + '.gif');
-            $('.minImg, .minContent').hide();
-            $('.minTitle').click(function () {
-                var menu = $(event.target).parents('.minTitle').data('menu');
-                if (current) {
-                    //replace all arrows with down arrows
-                    $('.minTitle[data-menu="' + current + '"] .arrow').html('&#8680;');
-                    $('.minBody [data-menu="' + current + '"]').hide();
-                }
-                //replace this one with a down arrow
-                $(event.target).children('.arrow').html('&#8681;');
-                $('[data-menu="' + menu + '"]').show();
-                current = menu;
-            })
-        });
-    </script>
 </head>
 
 <body>
@@ -266,7 +245,4 @@
                 </div>
             </div>
         </div>
-
-
-
 </body>
