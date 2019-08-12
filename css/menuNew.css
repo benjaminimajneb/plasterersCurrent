@@ -1,0 +1,170 @@
+
+	body {
+		background-color:#f9f9f9;
+		margin:0px;
+		border:0px;
+		font-family: 'Avenir', 'Helvetica', arial;
+	}
+
+	a {
+		color:#005689;
+		font-weight:bold;
+	}
+
+	#topBar{
+		z-index:100;
+		vertical-align:middle;
+		background-color:#234;
+		width:100%;
+		position:fixed;
+		top:0px;
+	}
+
+	#topBar a {
+		text-align:right;
+		font-family:'Avenir', 'Helvetiva', arial;
+		font-size:1.3em;
+		margin-top:1px;
+		margin-right:5px;
+		border:0px;
+		float:right;
+		color:#fff;
+		padding:5px;
+		text-decoration:none;
+	}
+	#topBar img{
+		height:25px;
+		width:auto;
+		filter: invert(1);
+		-webkit-filter: invert(1);
+	}
+
+	#website{
+		position:relative;
+		padding-top:40px;
+	}
+
+
+	.minBody{
+		width:100%;
+		margin:0px;
+		padding:0px;
+		text-align:center;
+		height:auto;
+    }
+    
+	.minContent{
+	/*	background-color:gray; */
+		margin:5%;
+		margin-left:1%;
+		margin-right:16%;
+		width:46%;
+		padding:0px;
+		border:0px;
+		float:right;
+		text-align:left;
+	}
+	.minBody p, ol, li, i {
+		color:black;
+		font-family: 'Avenir', 'Helvetiva', sans-serif;
+		font-weight:100;
+		font-size:0.9em;
+		text-align:left;
+		margin:0px;
+		padding:0px;
+		letter-spacing:normal;
+	}
+	.minBody ol {
+		padding-left:30px;
+		font-size: 1em;
+	}
+
+
+
+    .leftCol, .rightCol{
+        float:left;
+        height:100%;
+        width: 49.5%;
+        padding:0px;
+        margin:0px;
+    }
+
+    .menuSectionWrapper {
+        display:table-row;
+    }
+
+    .menuTableWrapper {
+        display:table;
+        vertical-align:middle;
+        height:100%;
+        text-align:right;
+        width:100%;
+    }
+
+    .menuContents {
+        height:auto;
+        display:table-cell;
+        width:59%;
+        vertical-align:middle;
+        padding-top:30px;
+    }
+
+    .menuContents h3 {
+        margin-left:10px;
+        text-align:left;
+        margin-bottom:0px;
+        margin-top:0px;
+        color:#DC2B99;
+    }
+
+
+    .menuContents p {
+        margin-left:10px;
+        margin-bottom:20px;
+    }
+
+
+    .sectionTitle {
+        height:100%;
+        display:table-cell;
+        width:40%;
+        vertical-align:middle;
+        text-align:right;
+        padding-top:30px;
+    }
+    .sectionTitle h2 {
+        text-align:right;
+        margin-right:10px;
+        padding:0px;
+        margin-bottom:0px;
+        color:#2BCFDC;
+    }  
+    .sectionTitle h3 {
+        text-align:right;
+        margin-right:10px;
+        padding:0px;
+        margin-top:0px;
+        font-weight:100;
+    }
+
+    @media screen and (orientation: portrait) {
+        .leftCol, .rightCol{
+            clear:both;
+            display:block;
+            height:auto;
+            width: 100%;
+            padding:0px;
+            margin:0px;
+        }
+        .menuTableWrapper {
+            display:table;
+            vertical-align:top;
+        }
+        .sectionTitle {
+            display:table-cell;
+            vertical-align:top;
+        }
+
+    }
+
+    

@@ -1,0 +1,269 @@
+<html>
+
+<head>
+    <script src="../js/raphael.js"></script>
+    <script src="../js/jquery-1.10.2.min.js"></script>
+    <script src="../js/spinner.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Ewert|Poppins:300,400,500,600,700|Raleway:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
+
+
+
+    <style>
+        /* GENERAL STYLES */
+
+        #button {
+            background-color: black;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: auto;
+        }
+
+        #content {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            font-family: Raleway;
+
+        }
+
+        #canvas {
+            height: 100%;
+        }
+
+        #gubbins {
+            margin-top: 60px;
+        }
+
+        #result {
+            display: inline-block;
+            padding: 40px;
+            margin: 10px;
+            visibility: hidden;
+            text-align: center;
+            -webkit-animation-name: result;
+            /* Chrome, Safari, Opera */
+            -webkit-animation-fill-mode: forwards;
+            animation-fill-mode: forwards;
+
+            -webkit-animation-iteration-count: infinite;
+            animation-name: result;
+            animation-iteration-count: infinite;
+        }
+
+        #linkToQuiz {
+            display: block;
+            visibility: hidden;
+            text-align: center;
+            margin-top: 50px;
+
+        }
+
+        #linkToQuiz h2 {
+            font-family: Ewert;
+            font-size: 26px;
+        }
+
+        h1 {
+            display: inline-block;
+            position: relative;
+            text-align: center;
+            font-family: Ewert;
+            padding: 10px;
+            margin-bottom: 20px;
+            color: yellow;
+            border-style: dotted;
+            border-color: red;
+            -webkit-animation-name: title;
+            /* Chrome, Safari, Opera */
+            -webkit-animation-duration: 1s;
+            /* Chrome, Safari, Opera */
+            -webkit-animation-fill-mode: forwards;
+            -webkit-animation-iteration-count: infinite;
+            -webkit-animateion-direction: normal;
+            animation-name: title;
+            animation-duration: 1s;
+        }
+
+        @media screen and (orientation: portrait) {
+            #gubbins {
+                width: 100%;
+                text-align: left;
+                margin-top: 10px;
+            }
+            #result {
+                display: inline-block;
+                width: 45%;
+            }
+            #canvas {
+                width: 100%;
+            }
+        }
+
+        @media screen and (orientation: landscape) {
+            #gubbins {
+                width: 25%;
+                float: right;
+
+            }
+            #result {
+                display: block;
+            }
+            #canvas {
+                width: 74%;
+                float: left;
+                height: calc(100% - 100px);
+            }
+        }
+
+        /* STUPID ANIMATION STUFF */
+
+        @-webkit-keyframes back {
+            0% {
+                background-color: red;
+            }
+            33% {
+                background-color: blue;
+            }
+            66% {
+                background-color: orange;
+            }
+        }
+
+        @keyframes back {
+            0% {
+                background-color: red;
+            }
+            33% {
+                background-color: blue;
+            }
+            66% {
+                background-color: orange;
+            }
+        }
+
+        @-webkit-keyframes title {
+            0% {
+                color: yellow;
+                border-style: dotted;
+                border-color: blue;
+            }
+            50% {
+                color: green;
+                border-style: dashed;
+                border-color: red
+            }
+        }
+
+        @keyframes title {
+            0% {
+                color: yellow;
+                border-style: dotted;
+                border-color: blue;
+            }
+            50% {
+                color: green;
+                border-style: dashed;
+                border-color: red
+            }
+        }
+
+        @-webkit-keyframes result {
+            0% {
+                color: yellow;
+                background-color: red;
+                border-style: dotted;
+                border-color: orange;
+            }
+            50% {
+                color: green;
+                background-color: orange;
+                border-style: dashed;
+                border-color: red
+            }
+            100% {
+                color: yellow;
+                background-color: red;
+                border-style: dotted;
+                border-color: orange;
+            }
+        }
+
+        @keyframes result {
+            0% {
+                color: yellow;
+                background-color: red;
+                border-style: dotted;
+                border-color: orange;
+            }
+            50% {
+                color: green;
+                background-color: orange;
+                border-style: dashed;
+                border-color: red
+            }
+            100% {
+                color: yellow;
+                background-color: red;
+                border-style: dotted;
+                border-color: orange;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="content">
+        <h1> THE PLASTERERS ARMS WHEEL OF MISFORTUNE </h1>
+
+
+        <div id="gubbins">
+            <div id="button" onclick="spinWheel()">
+                TOUCH ME
+            </div>
+            <div id="result">
+            </div>
+            <a href='https://www.facebook.com/groups/1540540399324838'>
+                <div id="linkToQuiz">
+                    <h2> COME TO THE PLASTERERS ARMS QUIZ
+                        <br> FOR THE CHANCE TO PLAY IRL</h2>
+                    <br>
+                    <br> EVERY MONDAY, 8PM
+                    <br>
+                    <br> JOIN THE FACEBOOK GROUP HERE
+                </div>
+            </a>
+
+        </div>
+        <div>
+            <div id="canvas">
+                <!-- this is where the wheel is -->
+            </div>
+        </div>
+</body>
+
+
+<script>
+
+    /* WHEEL OPTIONS */
+    var options = [
+        "Your wife left you for her personal trainer!",
+        "They sent you the wrong size trainers but \n you couldn't be bothered  to exchange so you wore them \nanyway and now your feet are inoperably broken!",
+        "You did a poo on a bus!",
+        "You touched a child's bum by mistake!",
+        "You fell off your chair!",
+        "You slipped on banana skin! And landed in a trifle.",
+        "Your trousers are made of binbags!",
+        "Your knees are horrible!",
+        "You fell down some stairs onto a dog!",
+        "Your new hair looks like horse shit!",
+        "You absent-mindedly admitted to liking ABBA!",
+        "No-one likes your cooking actually!"
+    ]
+
+    $(document).ready(function () { drawWheel(canvas, options, true); });
+</script>
+
+</html>
